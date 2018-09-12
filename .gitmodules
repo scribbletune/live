@@ -1,0 +1,3 @@
+[submodule "docs/samplers"]
+	path = docs/samplers
+	url = https://github.com/scribbletune/samplers.git
