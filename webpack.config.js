@@ -2,12 +2,10 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-	entry: {
-		bundle: './src/index.js'
-	},
+	entry: './src/index.js',
 	mode: 'production',
 	output: {
-		filename: '[name].js',
+		filename: 'bundle.js',
 		// Use `docs` for the output for Github pages
 		path: path.resolve(__dirname, 'docs')
 	},
