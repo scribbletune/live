@@ -1,7 +1,7 @@
 scribble.clip({ sample: '/sounds/CH.wav', pattern: '[xxx]'.repeat(7) + '[xx[xx]]'  }).start();
 scribble.clip({ sample: '/sounds/fx1.wav', pattern: '----x-----------'  }).start();
 scribble.clip({ sample: '/sounds/fx2.wav', pattern: '------------x---'  }).start();
-scribble.clip({ sample: '/sounds/KickF.wav', pattern: 'x'.repeat(7) + '[xx]'  }).start();
+scribble.clip({ sample: '/sounds/kick.wav', pattern: 'x'.repeat(7) + '[xx]'  }).start();
 
 scribble.clip({ sample: '/sounds/Snare.wav', pattern: '-x'  }).start();
 scribble.clip({ sample: '/sounds/OH.wav', pattern: '-x'.repeat(7) + 'xx'  }).start();

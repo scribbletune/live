@@ -3,11 +3,9 @@ import { connect } from 'react-redux';
 import Channel from './Channel';
 
 const App = ({ channels }) => {
-  console.log(channels);
   const channelsList = channels.map((ch, idx) => <Channel channel={ch} />);
   return (
-    <div>
-      <h1>Hello App!</h1>
+    <div class="row">
       {channelsList}
     </div>
   );
