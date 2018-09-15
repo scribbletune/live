@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { playClip, stopClip } from './actions';
 import Clip from './Clip';
 import styled from 'styled-components';
 
@@ -15,9 +17,14 @@ const Header = styled.h6`
   border: 1px solid black;
 `;
 
-const Channel = ({ channel }) => {
+const Channel = ({ channel, playClipHandler, stopClipHandler }) => {
   const clipsList = channel.clips.map(
-    (clip, idx) => <Clip pattern={clip.pattern} isActive={channel.currentlyPlayingClipIdx === idx} id={idx} />
+    (clip, idx) => <Clip 
+      pattern={clip.pattern} 
+      isActive={channel.currentlyPlayingClipIdx === idx} 
+      onClickPlay={playClipHandler.bind(null, channel.id, idx)}
+      onClickStop={stopClipHandler.bind(null, channel.id, idx)}
+    />
   );
   return (
     <div class="col-lg-1 px-0">
@@ -27,4 +34,11 @@ const Channel = ({ channel }) => {
   );
 };
 
-export default Channel;
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    playClipHandler: playClip,
+    stopClipHandler: stopClip
+  }, dispatch);
+};
+
+export default connect(null, mapDispatchToProps)(Channel);

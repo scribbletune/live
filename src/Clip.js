@@ -13,17 +13,9 @@ const Cell = styled.li`
   }
 `;
 
-const Clip = ({ pattern, isActive, id }) => {
+const Clip = ({ pattern, isActive, onClickPlay, onClickStop }) => {
   if (!pattern) {
     return <Cell></Cell>;
-  }
-
-  const onClickPlay = () => {
-    console.log('play', id);
-  }
-
-  const onClickStop = () => {
-    console.log('stop', id);
   }
 
   if (isActive) {
