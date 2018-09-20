@@ -6,7 +6,7 @@ export const initialState = {
       { },
       { pattern: 'x' }
     ],
-    sample: '/sounds/KickF.wav',
+    sample: '/sounds/kick.wav',
     currentlyPlayingClipIdx: -1
   },
   {
@@ -17,7 +17,7 @@ export const initialState = {
       { pattern: '[-x]' }
     ],
     sample: '/sounds/Bass.wav',
-    currentlyPlayingClipIdx: 1
+    currentlyPlayingClipIdx: -1
   },
   {
     id: 2,
