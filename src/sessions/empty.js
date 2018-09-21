@@ -1,42 +1,38 @@
 export const initialState = {
   channels: [{
-    id: 0,
     name: 'Kk',
     clips: [
-      { },
+      { pattern: 'x' },
       { pattern: 'x' }
     ],
-    sample: '/sounds/kick.wav',
-    currentlyPlayingClipIdx: -1
+    sample: '/sounds/kick.wav'
   },
   {
-    id: 1,
     name: 'B',
     clips: [
       { pattern: '[-x]' },
-      { pattern: '[-x]' }
+      { pattern: '[xx]' }
     ],
-    sample: '/sounds/Bass.wav',
-    currentlyPlayingClipIdx: -1
+    sample: '/sounds/Bass.wav'
   },
   {
-    id: 2,
     name: 'PSyn',
     clips: [
-      { pattern: '[-x]', notes: 'c4' },
+      { pattern: 'x', notes: 'c4' },
       { pattern: '[xx]', notes: 'd4' },
     ],
-    synth: 'PolySynth',
-    currentlyPlayingClipIdx: -1
+    synth: 'PolySynth'
   },
   {
-    id: 3,
     name: 'Hats',
     clips: [
       { pattern: '[-x]' },
       { pattern: '[xx]' }
     ],
-    sample: '/sounds/OH.wav',
-    currentlyPlayingClipIdx: -1
-  }]
-}
+    sample: '/sounds/OH.wav'
+  }].map((ch, idx) => {
+    ch.id = idx;
+    ch.currentlyPlayingClipIdx = -1;
+    return ch;
+  })
+};
