@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "npx webpack -d --watch",
     "build": "npx webpack --config webpack.config.js",
-    "rebuild": "rm -rf node_modules && rm package-lock.json && npm i && npm run build",
+    "nuke": "rm -rf node_modules && rm package-lock.json && npm i",
     "start": "webpack-dev-server"
   },
   "repository": {

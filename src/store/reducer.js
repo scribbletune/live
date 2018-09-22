@@ -1,5 +1,5 @@
 import { session } from 'scribbletune';
-import { initialState } from './sessions/empty';
+import { initialState } from './empty';
 
 const s = session(initialState.channels);
 Tone.Transport.bpm.value = 145;
