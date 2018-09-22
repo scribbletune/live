@@ -17,12 +17,12 @@ export default function getInitialState() {
       sample: '/sounds/hits/bass.wav'
     },
     {
-      name: 'PSyn',
+      name: 'P',
       clips: [
         { pattern: 'x', notes: 'c4' },
         { pattern: '[xx]', notes: 'd4' },
       ],
-      synth: 'PolySynth'
+      samples: samplers.piano
     },
     {
       name: 'Hats',
