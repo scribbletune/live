@@ -6,7 +6,7 @@ export default function getInitialState() {
         { pattern: 'x' },
         { pattern: 'x' }
       ],
-      sample: '/sounds/kick.wav'
+      sample: '/sounds/hits/kick.wav'
     },
     {
       name: 'B',
@@ -14,7 +14,7 @@ export default function getInitialState() {
         { pattern: '[-x]' },
         { pattern: '[xx]' }
       ],
-      sample: '/sounds/Bass.wav'
+      sample: '/sounds/hits/bass.wav'
     },
     {
       name: 'PSyn',
@@ -30,7 +30,7 @@ export default function getInitialState() {
         { pattern: '[-x]' },
         { pattern: '[xx]' }
       ],
-      sample: '/sounds/OH.wav'
+      sample: '/sounds/hits/ch.wav'
     }].map((ch, idx) => {
       ch.id = idx;
       ch.currentlyPlayingClipIdx = -1;
