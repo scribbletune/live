@@ -28,7 +28,7 @@ const Channel = ({ channel, playClipHandler, stopClipHandler }) => {
     />
   );
   return (
-    <div className="col-lg-1 px-0">
+    <div className="col px-0">
       <Header>{channel.name}</Header>
       <ul className="list-unstyled">{clipsList}</ul>
     </div>

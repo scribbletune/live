@@ -14,7 +14,7 @@ const Rows = ({ rowsCount }) => {
   );
 
   return (
-    <div className="col-lg-1">
+    <div className="col">
       <RowHeader />
       <ul className="list-unstyled">{rowsList}</ul>
     </div>
