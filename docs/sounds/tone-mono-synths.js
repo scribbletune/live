@@ -1,3 +1,10 @@
+function getToneMonoSynth(synthPreset) {
+  const arr = synthPreset.split(':');
+  const synth = arr[0];
+  const preset = arr[1];
+  return new Tone[synth](preset ? ToneMonoSynths[synth][preset] : '');
+}
+
 const ToneMonoSynths = {
   FMSynth: {
     ElectricCello: {
@@ -268,11 +275,4 @@ const ToneMonoSynths = {
       }
     }
   }
-}
-
-function getToneMonoSynth(synthPreset) {
-  const arr = synthPreset.split(':');
-  const synth = arr[0];
-  const preset = arr[1];
-  return new Tone[synth](preset ? ToneMonoSynths[synth][preset] : '');
 }

@@ -2,12 +2,17 @@ import { scale } from 'scribbletune';
 
 const key = 'C';
 
-const getNotes = (key, octave) => {
-  let mode = 'minor';
-  let theMode = scale(key + octave + ' ' + mode);
-  const modeSliced = theMode.slice(0, 3);
-  return [...modeSliced, ...modeSliced.reverse(), ...modeSliced, ...theMode.slice(4).reverse()];
-}
+const getNotes = (key, octave) => ('' +
+  'G3 G4 '.repeat(8) + 
+  'G3 A4 '.repeat(8) + 
+  'F3 A#4 '.repeat(8) + 
+  'F3 A4 '.repeat(8) +
+
+  'G3 G4 '.repeat(8) + 
+  'G3 A4 '.repeat(8) + 
+  'F3 A#4 '.repeat(8) + 
+  'C3 C5 '.repeat(7) + 'C3 C5'
+);
 
 export default function getInitialState() {
   return {
@@ -25,7 +30,7 @@ export default function getInitialState() {
         { pattern: '[xx]', notes: 'G3' },
         { pattern: '[xx]', notes: 'G3' },
         { pattern: '[xx]', notes: 'G3' },
-        { pattern: '[xx]', notes: 'G3' },
+        { },
       ],
       samples: samplers.piano,
       volume: -50
@@ -43,7 +48,7 @@ export default function getInitialState() {
         { pattern: 'x[x--x][---x][-x]', notes: 'c4 c4 d#4 c4 d4' },
         { pattern: 'x[x--x][---x][-x]', notes: 'c4 c4 d#4 c4 d4' },
         { },
-        { pattern: 'x[x--x][---x][-x]', notes: 'c4 c4 d#4 c4 d4' },
+        { },
       ],
       samples: samplers.piano,
       volume: -24
@@ -81,8 +86,7 @@ export default function getInitialState() {
         { },
         { },
       ],
-      samples: samplers.jarblePerator,
-      volume: -360,
+      instrument: getToneMonoSynth('FMSynth:ThinSaws'),
       dur: '16n'
     },
     {
@@ -152,8 +156,7 @@ export default function getInitialState() {
         { },
         { pattern: 'xxx[x[xx]]xxx[[xx]-]' },
       ],
-      sample: '/sounds/hits/snare.wav',
-      volume: 2
+      sample: '/sounds/hits/snare.wav'
     },
     {
       name: 'S2',
@@ -168,11 +171,11 @@ export default function getInitialState() {
         { },
         { },
         { },
-        { pattern: 'xx[-x]'.repeat(3) + 'xx[xx]', notes: getNotes(key, 3), effects: ['PingPongDelay'] },
+        { pattern: '[xxxx]', notes: getNotes() },
         // { pattern: '[xxxx]', notes: 'f3 a#4 '.repeat(12) + 'f3 a4 '.repeat(11) + 'f3 a4' },
       ],
-      samples: samplers.epicTranceLead,
-      dur: '16n'
+      instrument: getToneMonoSynth('Synth:SuperSaw'),
+      dur: '32n'
     },
     {
       name: 'K2',
@@ -189,8 +192,7 @@ export default function getInitialState() {
         { pattern: 'x-------' },
         { pattern: 'x' },
       ],
-      sample: '/sounds/hits/kick.wav',
-      volume: 6
+      sample: '/sounds/hits/kick.wav'
     },
     {
       name: 'B2',
@@ -205,7 +207,7 @@ export default function getInitialState() {
         { },
         { pattern: '[-xxx]', notes: 'g1' },
         { },
-        { pattern: '[-xxx]', notes: 'g1 '.repeat(4) + 'a#1 '.repeat(4) + 'g#1 '.repeat(4) + 'd2 '.repeat(2) + 'd#2 d#2'},
+        { pattern: '[-xxx]', notes: 'g1 '.repeat(8) + 'a1 '.repeat(8) + 'a#1 '.repeat(8) + 'a1 '.repeat(7) + 'a1'},
       ],
       samples: samplers.psyTranceBass
     },
@@ -224,26 +226,7 @@ export default function getInitialState() {
         { pattern: 'x-------' },
         { },
       ],
-      sample: '/sounds/hits/crash.wav',
-      volume: 12
-    },
-    {
-      name: 'S3',
-      clips: [
-        { },
-        { },
-        { },
-        { },
-        { },
-        { },
-        { },
-        { },
-        { },
-        { },
-        { pattern: 'x[x--x][---x][-x]', notes: 'c4 c4 d#4 c4 d4' },
-        // { pattern: '[xxxx]', notes: 'f3 a#4 '.repeat(12) + 'f3 a4 '.repeat(11) + 'f3 a4' },
-      ],
-      samples: samplers.ciriusRez
+      sample: '/sounds/hits/crash.wav'
     },
     ].map((ch, idx) => {
       ch.id = idx;
