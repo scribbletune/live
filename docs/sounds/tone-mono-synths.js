@@ -263,7 +263,7 @@ const ToneMonoSynths = {
     SuperSaw: {
       "oscillator" : {
         "type" : "fatsawtooth",
-        "count" : 3,
+        "count" : 2,
         "spread" : 30
       },
       "envelope": {

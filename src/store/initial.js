@@ -1,8 +1,6 @@
 import { scale } from 'scribbletune';
 
-const key = 'C';
-
-const getNotes = (key, octave) => ('' +
+const getNotes = () => ('' +
   'G3 G4 '.repeat(8) + 
   'G3 A4 '.repeat(8) + 
   'F3 A#4 '.repeat(8) + 
@@ -29,8 +27,7 @@ export default function getInitialState() {
         { },
         { pattern: '[xx]', notes: 'G3' },
         { pattern: '[xx]', notes: 'G3' },
-        { pattern: '[xx]', notes: 'G3' },
-        { },
+        { pattern: '[xx]', notes: getNotes() },
       ],
       samples: samplers.piano,
       volume: -50
@@ -48,7 +45,6 @@ export default function getInitialState() {
         { pattern: 'x[x--x][---x][-x]', notes: 'c4 c4 d#4 c4 d4' },
         { pattern: 'x[x--x][---x][-x]', notes: 'c4 c4 d#4 c4 d4' },
         { },
-        { },
       ],
       samples: samplers.piano,
       volume: -24
@@ -59,7 +55,6 @@ export default function getInitialState() {
         { },
         { pattern: 'x', notes: [['g3', 'a#3', 'd4'], ['a#3', 'c4', 'f4'], ['c4', 'd#4', 'g4'], ['c4', 'd#4', 'g#4']] },
         { pattern: 'x', notes: [['g3', 'a#3', 'd4'], ['a#3', 'c4', 'f4'], ['c4', 'd#4', 'g4'], ['c4', 'd#4', 'g#4']] },
-        { },
         { },
         { },
         { },
@@ -83,11 +78,11 @@ export default function getInitialState() {
         { },
         { },
         { },
-        { },
-        { },
+        { pattern: '[xxxx]', notes: getNotes() },
       ],
       instrument: getToneMonoSynth('FMSynth:ThinSaws'),
-      dur: '16n'
+      dur: '16n',
+      volume: 2
     },
     {
       name: 'K1',
@@ -95,7 +90,6 @@ export default function getInitialState() {
         { },
         { },
         { pattern: 'x--[-x]x---' },
-        { },
         { },
         { },
         { },
@@ -119,10 +113,10 @@ export default function getInitialState() {
         { pattern: '[xxx][xxx][xxx][x[xx]x]' },
         { },
         { },
-        { },
-        { pattern: '[xxx][xxx][xxx][x[xx]x]' },
+        { pattern: '[xx][xx][xx][x[xx]]' },
       ],
-      sample: '/sounds/hits/ch.wav'
+      sample: '/sounds/hits/ch.wav',
+      volume: 2
     },
     {
       name: 'Oh',
@@ -136,10 +130,10 @@ export default function getInitialState() {
         { },
         { },
         { },
-        { },
         { pattern: '[-x]' },
       ],
       sample: '/sounds/hits/oh.wav',
+      volume: 2
     },
     {
       name: 'Sn',
@@ -153,10 +147,11 @@ export default function getInitialState() {
         { pattern: 'x-x-x-x-xxxxxxxx[xx][xx][xx][xx][xx][xx][xx][xx][xxxx][xxxx][xxxx][xxxx][xxxxxxxx][xxxxxxxx][xxxxxxxx][xxxxxxxx]' },
         { },
         { },
-        { },
         { pattern: 'xxx[x[xx]]xxx[[xx]-]' },
       ],
-      sample: '/sounds/hits/snare.wav'
+      sample: '/sounds/hits/snare.wav',
+      volume: 1,
+      effects: ['Chorus']
     },
     {
       name: 'S2',
@@ -170,12 +165,11 @@ export default function getInitialState() {
         { pattern: '[xxx]', notes: 'g4 c4 g4 d#4 '.repeat(12) + 'g#4 c4 g#4 d#4 '.repeat(11) + 'g#4 c4 g#4 d#4' },
         { },
         { },
-        { },
         { pattern: '[xxxx]', notes: getNotes() },
-        // { pattern: '[xxxx]', notes: 'f3 a#4 '.repeat(12) + 'f3 a4 '.repeat(11) + 'f3 a4' },
       ],
       instrument: getToneMonoSynth('Synth:SuperSaw'),
-      dur: '32n'
+      dur: '32n',
+      volume: -6
     },
     {
       name: 'K2',
@@ -189,10 +183,10 @@ export default function getInitialState() {
         { pattern: 'x' },
         { pattern: 'x-------' },
         { pattern: 'x' },
-        { pattern: 'x-------' },
         { pattern: 'x' },
       ],
-      sample: '/sounds/hits/kick.wav'
+      sample: '/sounds/hits/kick.wav',
+      volume: 2
     },
     {
       name: 'B2',
@@ -206,7 +200,6 @@ export default function getInitialState() {
         { pattern: '[xxx]', notes: 'g1 '.repeat(5) + 'a#1 ' +  'g1 '.repeat(4) + 'a#1 d2'},
         { },
         { pattern: '[-xxx]', notes: 'g1' },
-        { },
         { pattern: '[-xxx]', notes: 'g1 '.repeat(8) + 'a1 '.repeat(8) + 'a#1 '.repeat(8) + 'a1 '.repeat(7) + 'a1'},
       ],
       samples: samplers.psyTranceBass
@@ -223,7 +216,6 @@ export default function getInitialState() {
         { },
         { pattern: 'x-------' },
         { },
-        { pattern: 'x-------' },
         { },
       ],
       sample: '/sounds/hits/crash.wav'
