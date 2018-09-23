@@ -4,7 +4,7 @@ import Channel from './Channel';
 import Rows from './Rows';
 
 const App = ({ channels }) => {
-  const channelsList = channels.map(ch => <Channel channel={ch} />);
+  const channelsList = channels.map((ch, idx) => <Channel key={idx} channel={ch} />);
 
   // Get the channel with the maximum number of clips and set that as the total number of rows required
   const getRowsCount = () => {
@@ -20,7 +20,7 @@ const App = ({ channels }) => {
   };
 
   return (
-    <div class="row">
+    <div className="row">
       {channelsList}
       <Rows rowsCount = {getRowsCount()} />
     </div>

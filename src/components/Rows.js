@@ -10,13 +10,13 @@ const RowHeader = styled.h6`
 
 const Rows = ({ rowsCount }) => {
   const rowsList = [...Array(rowsCount).keys()].map(
-    el => <RowButton idx={el} />
+    (el, idx) => <RowButton key={idx} idx={el} />
   );
 
   return (
     <div className="col-lg-1">
       <RowHeader />
-      <ul class="list-unstyled">{rowsList}</ul>
+      <ul className="list-unstyled">{rowsList}</ul>
     </div>
   );
 };

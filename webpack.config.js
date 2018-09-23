@@ -3,7 +3,7 @@ const webpack = require('webpack');
 
 module.exports = {
 	entry: './src/index.js',
-	mode: 'production',
+	mode: 'development',
 	output: {
 		filename: 'bundle.js',
 		// Use `docs` for the output for Github pages

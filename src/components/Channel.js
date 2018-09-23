@@ -20,6 +20,7 @@ const Header = styled.h6`
 const Channel = ({ channel, playClipHandler, stopClipHandler }) => {
   const clipsList = channel.clips.map(
     (clip, idx) => <Clip 
+      key={idx}
       pattern={clip.pattern} 
       isActive={channel.currentlyPlayingClipIdx === idx} 
       onClickPlay={playClipHandler.bind(null, channel.id, idx)}
@@ -27,9 +28,9 @@ const Channel = ({ channel, playClipHandler, stopClipHandler }) => {
     />
   );
   return (
-    <div class="col-lg-1 px-0">
+    <div className="col-lg-1 px-0">
       <Header>{channel.name}</Header>
-      <ul class="list-unstyled">{clipsList}</ul>
+      <ul className="list-unstyled">{clipsList}</ul>
     </div>
   );
 };
