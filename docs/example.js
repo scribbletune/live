@@ -8,7 +8,6 @@ scribble.clip({ sample: '/sounds/OH.wav', pattern: '-x'.repeat(7) + 'xx'  }).sta
 
 scribble.clip({ sample: '/sounds/Bass.wav', pattern: '[xxx]'.repeat(15) + '-'  }).start();
 
-
 scribble.clip({
 	synth: 'PolySynth',
 	pattern: 'x---x-',
