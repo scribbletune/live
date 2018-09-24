@@ -19,7 +19,7 @@ export default function getInitialState() {
         { },
       ],
       samples: samplers.piano,
-      volume: -50
+      volume: -72
     },
     {
       name: 'P2',
@@ -36,7 +36,7 @@ export default function getInitialState() {
         { },
       ],
       samples: samplers.piano,
-      volume: -24
+      volume: -72
     },
     {
       name: 'Str',
@@ -71,7 +71,7 @@ export default function getInitialState() {
       ],
       instrument: getToneMonoSynth('FMSynth:ThinSaws'),
       dur: '16n',
-      volume: 2
+      volume: 1
     },
     {
       name: 'K1',
@@ -88,7 +88,7 @@ export default function getInitialState() {
         { },
       ],
       sample: '/sounds/hits/normal-kick.wav',
-      volume: 12
+      volume: 0
     },
     {
       name: 'Ch',
@@ -105,7 +105,7 @@ export default function getInitialState() {
         { },
       ],
       sample: '/sounds/hits/ch.wav',
-      volume: 2
+      volume: -36
     },
     {
       name: 'Oh',
@@ -121,8 +121,7 @@ export default function getInitialState() {
         { },
         { },
       ],
-      sample: '/sounds/hits/oh.wav',
-      volume: 2
+      sample: '/sounds/hits/oh.wav'
     },
     {
       name: 'Sn',
@@ -138,9 +137,7 @@ export default function getInitialState() {
         { },
         { },
       ],
-      sample: '/sounds/hits/snare.wav',
-      volume: 1,
-      effects: ['Chorus']
+      sample: '/sounds/hits/snare.wav'
     },
     {
       name: 'S2',
@@ -157,8 +154,7 @@ export default function getInitialState() {
         { },
       ],
       instrument: getToneMonoSynth('Synth:SuperSaw'),
-      dur: '32n',
-      volume: -6
+      dur: '32n'
     },
     {
       name: 'K2',
@@ -175,7 +171,7 @@ export default function getInitialState() {
         { },
       ],
       sample: '/sounds/hits/kick.wav',
-      volume: 2
+      volume: -14
     },
     {
       name: 'B2',
@@ -191,42 +187,8 @@ export default function getInitialState() {
         { },
         { },
       ],
-      samples: samplers.psyTranceBass
-    },
-    {
-      name: 'Fx1',
-      clips: [
-        { },
-        { },
-        { },
-        { },
-        { },
-        { },
-        { },
-        { },
-        { },
-        { },
-      ],
-      sample: '/sounds/hits/fx1.wav',
-      volume: 4,
-      effects: ['Chorus', 'FeedbackDelay']
-    },
-    {
-      name: 'Fx2',
-      clips: [
-        { },
-        { },
-        { },
-        { },
-        { },
-        { },
-        { },
-        { },
-        { },
-        { },
-      ],
-      sample: '/sounds/hits/fx2.wav',
-      volume: 6
+      samples: samplers.psyTranceBass,
+      volume: -30,
     },
     {
       name: 'Cr',

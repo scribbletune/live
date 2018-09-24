@@ -14,12 +14,12 @@ export default function getInitialState() {
         { },
         { },
         { },
-        { pattern: '[xx]', notes: 'G3' },
-        { pattern: '[xx]', notes: 'G3' },
-        { pattern: '[xx]', notes: rpg8Notes() },
+        { pattern: '[xxxx]', notes: rpg8Notes() },
+        { pattern: '[xxxx]', notes: rpg8Notes() },
+        { pattern: '[xxxx]', notes: rpg8Notes() },
       ],
       samples: samplers.piano,
-      volume: -50
+      volume: -72
     },
     {
       name: 'P2',
@@ -31,12 +31,12 @@ export default function getInitialState() {
         { },
         { },
         { },
-        { pattern: '[x[xx][-x][-x]]', notes: 'c4 d#4 c4 d4 d#4 f4 c4 f4 d4' },
-        { pattern: '[x[xx][-x][-x]]', notes: 'c4 d#4 c4 d4 d#4 f4 c4 f4 d4' },
+        { },
+        { },
         { },
       ],
       samples: samplers.piano,
-      volume: -24
+      volume: -72
     },
     {
       name: 'Str',
@@ -71,7 +71,7 @@ export default function getInitialState() {
       ],
       instrument: getToneMonoSynth('FMSynth:ThinSaws'),
       dur: '16n',
-      volume: 2
+      volume: 1
     },
     {
       name: 'K1',
@@ -88,7 +88,7 @@ export default function getInitialState() {
         { },
       ],
       sample: '/sounds/hits/normal-kick.wav',
-      volume: 12
+      volume: 0
     },
     {
       name: 'Ch',
@@ -105,14 +105,14 @@ export default function getInitialState() {
         { pattern: '[xx][xx][xx][x[xx]]' },
       ],
       sample: '/sounds/hits/ch.wav',
-      volume: 2
+      volume: -36
     },
     {
       name: 'Oh',
       clips: [
         { },
         { },
-        { pattern: '-[-x]-x' },
+        { },
         { },
         { },
         { },
@@ -121,8 +121,7 @@ export default function getInitialState() {
         { },
         { pattern: '[-x]' },
       ],
-      sample: '/sounds/hits/oh.wav',
-      volume: 2
+      sample: '/sounds/hits/oh.wav'
     },
     {
       name: 'Sn',
@@ -138,9 +137,7 @@ export default function getInitialState() {
         { },
         { pattern: 'xxx[x[xx]]xxx[[xx]-]' },
       ],
-      sample: '/sounds/hits/snare.wav',
-      volume: 1,
-      effects: ['Chorus']
+      sample: '/sounds/hits/snare.wav'
     },
     {
       name: 'S2',
@@ -157,8 +154,7 @@ export default function getInitialState() {
         { pattern: '[xxxx]', notes: rpg8Notes() },
       ],
       instrument: getToneMonoSynth('Synth:SuperSaw'),
-      dur: '32n',
-      volume: -6
+      dur: '32n'
     },
     {
       name: 'K2',
@@ -175,7 +171,7 @@ export default function getInitialState() {
         { pattern: 'x' },
       ],
       sample: '/sounds/hits/kick.wav',
-      volume: 2
+      volume: -14
     },
     {
       name: 'B2',
@@ -197,42 +193,8 @@ export default function getInitialState() {
           ...multiply(['c2'], 12)
         ] },
       ],
-      samples: samplers.psyTranceBass
-    },
-    {
-      name: 'Fx1',
-      clips: [
-        { },
-        { },
-        { },
-        { },
-        { pattern: '---x------------' },
-        { pattern: '---x------------' },
-        { pattern: '---x------------' },
-        { },
-        { },
-        { },
-      ],
-      sample: '/sounds/hits/fx1.wav',
-      volume: 4,
-      effects: ['Chorus', 'FeedbackDelay']
-    },
-    {
-      name: 'Fx2',
-      clips: [
-        { },
-        { },
-        { },
-        { },
-        { pattern: '-----------x----' },
-        { pattern: '-----------x----' },
-        { pattern: '-----------x----' },
-        { },
-        { },
-        { },
-      ],
-      sample: '/sounds/hits/fx2.wav',
-      volume: 6
+      samples: samplers.psyTranceBass,
+      volume: -30,
     },
     {
       name: 'Cr',
@@ -249,7 +211,7 @@ export default function getInitialState() {
         { },
       ],
       sample: '/sounds/hits/crash.wav',
-      volume: 12
+      volume: 0
     },
     ].map((ch, idx) => {
       ch.id = idx;
