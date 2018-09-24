@@ -16,7 +16,7 @@ export const multiply = (arr, count) => {
 };
 
 export const rpg8Chords = (chords, times) => {
-  chords = chords || 'Gm-3 BbMsus2-3 Cm-4 AbM-3';
+  chords = chords || 'Gm-3 BbMsus2-3 Cm AbMsus2';
   const arr = chords.split(/\s|\,/);
   let finalArr = [];
   arr.forEach(el => {
