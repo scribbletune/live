@@ -1,16 +1,5 @@
 import { scale } from 'scribbletune';
-
-const getNotes = () => ('' +
-  'G3 G4 '.repeat(8) + 
-  'G3 A4 '.repeat(8) + 
-  'F3 A#4 '.repeat(8) + 
-  'F3 A4 '.repeat(8) +
-
-  'G3 G4 '.repeat(8) + 
-  'G3 A4 '.repeat(8) + 
-  'F3 A#4 '.repeat(8) + 
-  'C3 C5 '.repeat(7) + 'C3 C5'
-);
+import { rpg8Chords, rpg8Notes, multiply } from '../utils';
 
 export default function getInitialState() {
   return {
@@ -27,7 +16,7 @@ export default function getInitialState() {
         { },
         { pattern: '[xx]', notes: 'G3' },
         { pattern: '[xx]', notes: 'G3' },
-        { pattern: '[xx]', notes: getNotes() },
+        { pattern: '[xx]', notes: rpg8Notes() },
       ],
       samples: samplers.piano,
       volume: -50
@@ -42,8 +31,8 @@ export default function getInitialState() {
         { },
         { },
         { },
-        { pattern: 'x[x--x][---x][-x]', notes: 'c4 c4 d#4 c4 d4' },
-        { pattern: 'x[x--x][---x][-x]', notes: 'c4 c4 d#4 c4 d4' },
+        { pattern: '[x[xx][-x][-x]]', notes: 'c4 d#4 c4 d4 d#4 f4 c4 f4 d4' },
+        { pattern: '[x[xx][-x][-x]]', notes: 'c4 d#4 c4 d4 d#4 f4 c4 f4 d4' },
         { },
       ],
       samples: samplers.piano,
@@ -53,8 +42,10 @@ export default function getInitialState() {
       name: 'Str',
       clips: [
         { },
-        { pattern: 'x', notes: [['g3', 'a#3', 'd4'], ['a#3', 'c4', 'f4'], ['c4', 'd#4', 'g4'], ['c4', 'd#4', 'g#4']] },
-        { pattern: 'x', notes: [['g3', 'a#3', 'd4'], ['a#3', 'c4', 'f4'], ['c4', 'd#4', 'g4'], ['c4', 'd#4', 'g#4']] },
+        // 'g4 c4 g4 d#4  - g#4 c4 g#4 d#4 '
+        // Cm AbM
+        { pattern: 'x', notes: 'Gm-3 BbMsus2-3 Cm-3 AbM-3' },
+        { pattern: 'x', notes: 'Gm-3 BbMsus2-3 Cm-3 AbM-3' },
         { },
         { },
         { },
@@ -71,14 +62,14 @@ export default function getInitialState() {
       clips: [
         { },
         { },
-        { pattern: '[xxx]', notes: 'd4 g3 d4 a#4 '.repeat(12) + 'f4 a#4 f4 c4 '.repeat(12) + 'g4 c4 g4 d#4 '.repeat(12) + 'g#4 c4 g#4 d#4 '.repeat(11) + 'g#4 c4 g#4 d#4' },
+        { pattern: '[xxx]', notes: rpg8Chords() },
         { },
         { },
         { },
         { },
         { },
         { },
-        { pattern: '[xxxx]', notes: getNotes() },
+        { pattern: '[xxxx]', notes: rpg8Notes() },
       ],
       instrument: getToneMonoSynth('FMSynth:ThinSaws'),
       dur: '16n',
@@ -159,13 +150,13 @@ export default function getInitialState() {
         { },
         { },
         { },
-        { pattern: '[xxx]', notes: 'g4 c4 g4 d#4 '.repeat(12) + 'g#4 c4 g#4 d#4 '.repeat(11) + 'g#4 c4 g#4 d#4' },
-        { pattern: '[xxx]', notes: 'g4 c4 g4 d#4 '.repeat(12) + 'g#4 c4 g#4 d#4 '.repeat(11) + 'g#4 c4 g#4 d#4' },
-        { pattern: '[xxx]', notes: 'g4 c4 g4 d#4 '.repeat(12) + 'g#4 c4 g#4 d#4 '.repeat(11) + 'g#4 c4 g#4 d#4' },
-        { pattern: '[xxx]', notes: 'g4 c4 g4 d#4 '.repeat(12) + 'g#4 c4 g#4 d#4 '.repeat(11) + 'g#4 c4 g#4 d#4' },
+        { pattern: '[xxx]', notes: rpg8Chords() },
+        { pattern: '[xxx]', notes: rpg8Chords() },
+        { pattern: '[xxx]', notes: rpg8Chords() },
+        { pattern: '[xxx]', notes: rpg8Chords() },
         { },
         { },
-        { pattern: '[xxxx]', notes: getNotes() },
+        { pattern: '[xxxx]', notes: rpg8Notes() },
       ],
       instrument: getToneMonoSynth('Synth:SuperSaw'),
       dur: '32n',
@@ -200,9 +191,50 @@ export default function getInitialState() {
         { pattern: '[xxx]', notes: 'g1 '.repeat(5) + 'a#1 ' +  'g1 '.repeat(4) + 'a#1 d2'},
         { },
         { pattern: '[-xxx]', notes: 'g1' },
-        { pattern: '[-xxx]', notes: 'g1 '.repeat(8) + 'a1 '.repeat(8) + 'a#1 '.repeat(8) + 'a1 '.repeat(7) + 'a1'},
+        { pattern: '[-xxx]', notes: [
+          ...multiply(['g1'], 24),
+          ...multiply(['f2'], 24),
+          ...multiply(['g1'], 24),
+          ...multiply(['f2'], 12),
+          ...multiply(['c2'], 12)
+        ] },
       ],
       samples: samplers.psyTranceBass
+    },
+    {
+      name: 'Fx1',
+      clips: [
+        { },
+        { },
+        { },
+        { },
+        { pattern: '---x------------' },
+        { pattern: '---x------------' },
+        { pattern: '---x------------' },
+        { },
+        { },
+        { },
+      ],
+      sample: '/sounds/hits/fx1.wav',
+      volume: 6,
+      effects: ['Chorus']
+    },
+    {
+      name: 'Fx2',
+      clips: [
+        { },
+        { },
+        { },
+        { },
+        { pattern: '-----------x----' },
+        { pattern: '-----------x----' },
+        { pattern: '-----------x----' },
+        { },
+        { },
+        { },
+      ],
+      sample: '/sounds/hits/fx2.wav',
+      volume: 6
     },
     {
       name: 'Cr',
@@ -218,7 +250,8 @@ export default function getInitialState() {
         { },
         { },
       ],
-      sample: '/sounds/hits/crash.wav'
+      sample: '/sounds/hits/crash.wav',
+      volume: 6
     },
     ].map((ch, idx) => {
       ch.id = idx;

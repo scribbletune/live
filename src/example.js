@@ -1,4 +1,4 @@
-import { clip, scale } from 'scribbletune';
+import { clip, scale, chord, progression } from 'scribbletune';
 
 /*clip({ sample: '/sounds/hits/ch.wav', pattern: '[xxx]'.repeat(7) + '[xx[xx]]'  }).start();
 clip({ sample: '/sounds/hits/fx1.wav', pattern: '----x-----------'  }).start();
@@ -16,7 +16,7 @@ clip({
   notes: 'Cm7 Fm7 Em7 Fm7'
 }).start();
 */
-var superSawNotes = '' +
+/*var superSawNotes = '' +
           'G3 G4 '.repeat(8) + 
           'G3 A4 '.repeat(8) + 
           'F3 A#4 '.repeat(8) + 
@@ -31,6 +31,69 @@ clip({
   pattern: '[xxxx]',
   notes: superSawNotes,
   dur: '32n'
-}).start();
-Tone.Transport.bpm.value = 145;
+}).start();*/
+
+
+
+// Tone.Transport.bpm.value = 145;
 // Tone.Transport.start();
+
+const cMinorScale = scale('C4 minor');
+console.log(cMinorScale);
+/*
+D4 G3 D4 Bb4
+F4 Bb4 F4 C4
+G4 C4 G4 Eb4
+G#4 C4 Ab4 Eb4
+*/
+/*console.log(chord('Gm'));
+console.log(chord('BbMsus2'));
+console.log(chord('Cm'));
+console.log(chord('AbM'));*/
+
+const mangle = c => {
+  let arr = chord(c);
+  let counterpoint = arr.pop();
+  return arr.reduce((a, b) => [...a, counterpoint, b], []);
+};
+
+const multiply = (arr, count) => {
+  let finalArr = [];
+  while (count > 0) {
+    finalArr = [...finalArr, ...arr];
+    count--;
+  }
+  return finalArr;
+};
+
+const rpg8Chords = (chords = 'Gm-3 BbMsus2-3 Cm-3 AbM-3', times) => {
+  const arr = chords.split(/\s|\,/);
+  let finalArr = [];
+  arr.forEach(el => {
+    finalArr.push(...multiply(mangle(el), times || 12))
+  });
+  return finalArr;
+};
+
+const rpg8Notes = () => {
+  return [
+    ...multiply(['g3', 'g4'], 8),
+    ...multiply(['g3', 'a4'], 8),
+    ...multiply(['f3', 'a#4'], 8),
+    ...multiply(['f3', 'a4'], 8),
+    ...multiply(['g3', 'g4'], 8),
+    ...multiply(['g3', 'a4'], 8),
+    ...multiply(['f3', 'a#4'], 8),
+    ...multiply(['c3', 'c5'], 8)
+  ];
+};
+
+console.log(rpg8Chords('Gm BbMsus2 Cm AbM'));
+
+
+
+
+
+
+
+
