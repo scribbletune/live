@@ -7,7 +7,8 @@ class Steps extends Component {
     this.state = {
       totalSteps: props.totalSteps,
       currentlyLitStep: -1,
-      selectedSteps: {}
+      selectedSteps: {},
+      note: props.note
     };
   }
 
@@ -17,8 +18,7 @@ class Steps extends Component {
     const seq = new Tone.Sequence((time, note) => {
       this.setState({currentlyLitStep: counter});
       if (this.state.selectedSteps[counter]) {
-        console.log('play');
-        synth.triggerAttackRelease(this.props.note, '8n');
+        synth.triggerAttackRelease(this.state.note, '8n');
       }
       counter++;
       if (counter > this.state.totalSteps - 1) {
@@ -28,8 +28,12 @@ class Steps extends Component {
     seq.start();
   }
 
-  onChangeHandler(e) {
+  onChangeTotalSteps(e) {
     this.setState({ totalSteps: +e.target.value });
+  }
+
+  onChangeNote(e) {
+    this.setState({ note: e.target.value });
   }
 
   onSelectStepHandler(selectedStepNum, selState) {
@@ -47,11 +51,12 @@ class Steps extends Component {
         <ul className="seq">{StepsList}</ul>
         <input 
           type="number" 
-          onChange={this.onChangeHandler.bind(this)} 
+          onChange={this.onChangeTotalSteps.bind(this)} 
           min="1" 
           max="16" 
           value={this.state.totalSteps} 
         />
+        <input type="text" value={this.state.note} onChange={this.onChangeNote.bind(this)} size="3"  />
       </div>
     );
   }
