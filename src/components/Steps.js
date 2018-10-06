@@ -14,11 +14,14 @@ class Steps extends Component {
 
   componentDidMount() {
     let counter = 0;
-    const synth = new Tone.Synth().toMaster();
+    let synth = this.state.note && new Tone.Synth().toMaster();
+    let player = this.props.sample && new Tone.Player(this.props.sample).toMaster();
+
     const seq = new Tone.Sequence((time, note) => {
       this.setState({currentlyLitStep: counter});
       if (this.state.selectedSteps[counter]) {
-        synth.triggerAttackRelease(this.state.note, '8n');
+        this.state.note && synth.triggerAttackRelease(this.state.note, '8n');
+        this.props.sample && player.start(time);
       }
       counter++;
       if (counter > this.state.totalSteps - 1) {

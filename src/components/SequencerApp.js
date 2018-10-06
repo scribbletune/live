@@ -10,6 +10,9 @@ const SequencerApp = () => {
       <Steps totalSteps={8} note="c3" />
       <Steps totalSteps={8} note="eb3" />
       <Steps totalSteps={6} note="g2" />
+      <Steps totalSteps={4} sample="/sounds/hits/normal-kick.wav" />
+      <Steps totalSteps={4} sample="/sounds/hits/ch.wav" />
+      <Steps totalSteps={8} sample="/sounds/hits/snare.wav" />
     </div>
   );
 };
