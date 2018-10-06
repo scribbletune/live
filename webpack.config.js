@@ -4,7 +4,8 @@ const webpack = require('webpack');
 module.exports = {
 	entry: {
 		bundle: './src/index.js',
-		example: './src/example.js'
+		example: './src/example.js',
+		sequencer: './src/sequencer.js'
 	},
 	mode: 'development',
 	output: {

@@ -1,0 +1,26 @@
+.seqContainer {
+  display: flex;
+}
+
+.seq {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+}
+
+.seq li {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: gray;
+  margin: 1px;
+}
+
+.sel {
+  background: maroon !important;
+}
+
+.lit {
+  background: red !important;
+}
