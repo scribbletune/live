@@ -2,7 +2,7 @@
 
 import { clip, scale, chord } from 'scribbletune';
 
-const key = 'c';
+const key = 'g';
 const octave = 3;
 const mode = 'ionian';
 const notesInArp = 8;
@@ -19,8 +19,7 @@ const theRomans = {
   harmonic: ['i', 'ii°', 'III+', 'iv', 'V', 'VI', 'vii°']
 };
 
-const order = '22232224'.split('');
-console.log(order);
+const order = '12132224'.split('');
 
 const getChordFamily = roman => {
   // remove any non character
@@ -37,14 +36,25 @@ const getChordFamily = roman => {
     return prefix + '#5';
   }
 
+  if (roman.includes('7')) {
+    return prefix === 'M' ? 'Maj7' : 'm7';
+  }
+
   return prefix;
 };
 
+/**
+ * Take an array and fill it with it s own elements in the next octave till it s of the specified `len`
+ * @param  {Array} arr e.g. ['a4', 'b4']
+ * @param  {Number} e.g. len 4
+ * @return {Array} e.g. ['a4', 'b4', 'a5', 'b5']
+ */
 const fillArr = (arr, len) => {
-  let finalArr = [];
-  while (finalArr.length < len) {
-    finalArr = [...finalArr, ...arr];
-  }
+  let finalArr =  [...arr, ...arr.map(el => {
+    let note = el.replace(/\d/, '');
+    let oct = el.replace(/\D/g, '');
+    return note + (+oct + 1);
+  })];
 
   return finalArr.slice(0, len);
 };
