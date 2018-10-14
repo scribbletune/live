@@ -1,3 +1,3 @@
 # live [WIP]
 
-Simplistic music performance tools for the browser based on the Scribbletune JS Library
+Music performance tools for the browser & terminal based on the Scribbletune node module and JS Library and a handful of other libraries such as Tone.js, Tonal and JSMidgen
