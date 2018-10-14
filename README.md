@@ -1,2 +1,2 @@
 # live [WIP]
-Simplistic music performance app for the browser based on Ableton Live's interface for Sessions
+Simplistic music performance tools for the browser
