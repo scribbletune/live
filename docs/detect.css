@@ -1,0 +1,9 @@
+.cb {
+  width: 20px;
+  height: 20px;
+  background: silver;
+  display: inline-block;
+}
+.cbSelected {
+  background: red;
+}

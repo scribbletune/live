@@ -5,7 +5,8 @@ module.exports = {
 	entry: {
 		bundle: './src/index.js',
 		example: './src/example.js',
-		sequencer: './src/sequencer.js'
+		sequencer: './src/sequencer.js',
+		detect: './src/detect.js'
 	},
 	mode: 'development',
 	output: {
