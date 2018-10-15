@@ -6,7 +6,8 @@ module.exports = {
 		bundle: './src/modules/Live/index.js',
 		example: './src/example.js',
 		sequencer: './src/modules/Sequencer/index.js',
-		detect: './src/modules/DetectScales/index.js'
+		detect: './src/modules/DetectScales/index.js',
+		rpg8: './src/modules/rpg8/index.js'
 	},
 	mode: 'development',
 	output: {
