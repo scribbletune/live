@@ -1,2 +1,3 @@
 # live [WIP]
-Simplistic music performance app for the browser based on Ableton Live's interface for Sessions
+
+Music performance tools for the browser & terminal based on the Scribbletune node module and JS Library and a handful of other libraries such as Tone.js, Tonal and JSMidgen
