@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { playClip, stopClip } from '../store/actions';
+import { playClip, stopClip } from './store/actions';
 import Clip from './Clip';
 import styled from 'styled-components';
 

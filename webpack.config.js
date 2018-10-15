@@ -3,10 +3,10 @@ const webpack = require('webpack');
 
 module.exports = {
 	entry: {
-		bundle: './src/index.js',
+		bundle: './src/modules/Live/index.js',
 		example: './src/example.js',
-		sequencer: './src/sequencer.js',
-		detect: './src/detect.js'
+		sequencer: './src/modules/Sequencer/index.js',
+		detect: './src/modules/DetectScales/index.js'
 	},
 	mode: 'development',
 	output: {

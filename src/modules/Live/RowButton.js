@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { playRow } from '../store/actions';
+import { playRow } from './store/actions';
 import styled from 'styled-components';
 
 const Cell = styled.li`
