@@ -9,9 +9,9 @@ const Selector = ({ data = [], title = '', selectedIdx = 0, onClickHandler }) =>
     return <li key={idx} className={className} onClick={onClickHandler.bind(null, {idx})}>{el}</li>
   });
   return (
-    <div>
+    <div className="selector">
       <h3>{title}</h3>
-      <ul>{liItems}</ul>
+      <ul className="list-unstyled">{liItems}</ul>
     </div>
     );
 };

@@ -2,8 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { rootReducer } from './reducer';
-import { initApp, changeKey, changeScale, changeArpLengthOption } from './actions';
+import { initApp, changeKey, changeScale, changeArpLength, changeArpOrder, changeClipChord } from './actions';
 import Selector from './Selector';
+import Clips from './Clips';
 
 const store = createStore(rootReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
@@ -15,30 +16,46 @@ const render = () => {
   const state = store.getState();
   ReactDOM.render(
     (<section>
-      <h1>Hello World</h1>
-      {/*KEYS*/}
-      <Selector
-        title="Key"
-        data={state.keys}
-        selectedIdx={state.selectedKeyIdx}
-        onClickHandler={changeKey.bind(null, store.dispatch)}
+      <div className="menu">
+        {/*KEYS*/}
+        <Selector
+          title="Key"
+          data={state.keys}
+          selectedIdx={state.selectedKeyIdx}
+          onClickHandler={changeKey.bind(null, store.dispatch)}
+        />
+
+        {/*SCALES*/}
+        <Selector
+          title="Scale"
+          data={state.scales}
+          selectedIdx={state.selectedScaleIdx}
+          onClickHandler={changeScale.bind(null, store.dispatch)}
+        />
+
+        {/*ARP LENGTH OPTIONS*/}
+        <Selector
+          title="Arp length"
+          data={state.arpLengthOptions}
+          selectedIdx={state.selectedArpLengthOptionIdx}
+          onClickHandler={changeArpLength.bind(null, store.dispatch)}
+        />
+
+        {/*ARP NOTES ORDER OPTIONS*/}
+        <Selector
+          title="Arp order"
+          data={state.arpNotesOrderOptions}
+          selectedIdx={state.selectedArpNotesOrderOptionsIdx}
+          onClickHandler={changeArpOrder.bind(null, store.dispatch)}
+        />
+      </div>
+      {/*PROGRESSION*/}
+      <Clips
+        progression={state.arpChordProgression}
+        selectedArr={state.arpClipSelectedChord}
+        onClickHandler={changeClipChord.bind(null, store.dispatch)}
       />
 
-      {/*SCALES*/}
-      <Selector
-        title="Scale"
-        data={state.scales}
-        selectedIdx={state.selectedScaleIdx}
-        onClickHandler={changeScale.bind(null, store.dispatch)}
-      />
-
-    {/*ARP LENGTH OPTIONS*/}
-      <Selector
-        title="Arp length"
-        data={state.arpLengthOptions}
-        selectedIdx={state.selectedArpLengthOptionIdx}
-        onClickHandler={changeArpLengthOption.bind(null, store.dispatch)}
-      />
     </section>),
     document.getElementById('root')
   );
