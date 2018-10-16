@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { rootReducer } from './reducer';
-import { initApp, changeKey, changeScale, changeArpLength, changeArpOrder, changeClipChord } from './actions';
+import { initApp, changeKey, changeScale, changeArpLength, changeArpOrder, changeClipChord, play, stop } from './actions';
 import Selector from './Selector';
 import Clips from './Clips';
 
@@ -32,7 +32,8 @@ const render = () => {
           selectedIdx={state.selectedScaleIdx}
           onClickHandler={changeScale.bind(null, store.dispatch)}
         />
-
+      </div>
+      <div className="menu">
         {/*ARP LENGTH OPTIONS*/}
         <Selector
           title="Arp length"
@@ -55,6 +56,11 @@ const render = () => {
         selectedArr={state.arpClipSelectedChord}
         onClickHandler={changeClipChord.bind(null, store.dispatch)}
       />
+      <div className="controls">
+        <button onClick={play.bind(null, store.dispatch)} disabled={state.isClipPlaying}>Play</button>
+        <button onClick={stop.bind(null, store.dispatch)} disabled={!state.isClipPlaying}>Stop</button>
+        <button>MIDI</button>
+      </div>
 
     </section>),
     document.getElementById('root')

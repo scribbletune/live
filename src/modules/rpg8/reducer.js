@@ -1,4 +1,4 @@
-import { scale, progression } from 'scribbletune';
+import { getProgression, playClip, stopClip } from './api';
 
 const arpNotesOrderOptionsList = [
   ['01', '10'],
@@ -14,36 +14,61 @@ const initialState = {
   selectedArpLengthOptionIdx: 1,
   arpNotesOrderOptions: ['0123', '3210', '1032', '2301'], // updates on arpLength change
   selectedArpNotesOrderOptionsIdx: 0,
-  arpChordProgression: progression.get('major'),
+  arpChordProgression: getProgression('major'),
   arpClipSelectedChord: [
     4, 5, 6, 5, 0, 1, 2, 3
-  ]
+  ],
+  isClipPlaying: false
 };
 
+const replayClip = (state) => {
+  if (state.isClipPlaying) {
+    stopClip();
+    playClip(state);
+  }
+}
+
 export const rootReducer = (state = initialState, action = {}) => {
+  let newState;
   switch (action.type) {
     case 'CHANGE_KEY':
-      return {...state, ...{selectedKeyIdx: action.data.idx}}
+      newState = {...state, ...{selectedKeyIdx: action.data.idx}};
+      replayClip(newState);
+      return newState;
     case 'CHANGE_SCALE':
-      return {...state, ...{
+      newState = {...state, ...{
         selectedScaleIdx: action.data.idx,
-        arpChordProgression: progression.get(state.scales[state.selectedScaleIdx])
-      }}
+        arpChordProgression: getProgression(state.scales[state.selectedScaleIdx])
+      }};
+      replayClip(newState);
+      return newState;
     case 'CHANGE_ARP_LENGTH':
-      return {...state, ...{
+      newState = {...state, ...{
         selectedArpLengthOptionIdx: action.data.idx,
         arpNotesOrderOptions: arpNotesOrderOptionsList[action.data.idx],
         selectedArpNotesOrderOptionsIdx: 0
-      }}
+      }};
+      replayClip(newState);
+      return newState;
     case 'CHANGE_ARP_ORDER':
-      return {...state, ...{selectedArpNotesOrderOptionsIdx: action.data.idx}}
+      newState = {...state, ...{selectedArpNotesOrderOptionsIdx: action.data.idx}}
+      replayClip(newState);
+      return newState;
     case 'CHANGE_CLIP_CHORD':
       let newArpClipSelectedChord = [...state.arpClipSelectedChord];
       newArpClipSelectedChord[action.data.clipIdx] = action.data.selectedChordIdx.idx; // Selector sends an object {idx: n}
-      return {
+      newState = {
         ...state,
         ...{ arpClipSelectedChord: newArpClipSelectedChord}
       }
+      replayClip(newState);
+      return newState;
+    case 'PLAY':
+      playClip(state);
+      return {...state, ...{ isClipPlaying: true }};
+    case 'STOP':
+      stopClip();
+      return {...state, ...{ isClipPlaying: false }};
     default:
       return state;
   }
