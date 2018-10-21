@@ -7,16 +7,16 @@ const arpNotesOrderOptionsList = [
 ];
 const initialState = {
   keys: 'C Db D Eb E F Gb G Ab A Bb B'.split(' '),
-  selectedKeyIdx: 0,
+  selectedKeyIdx: 7,
   scales: 'major minor dorian lydian mixolydian phrygian locrian'.split(' '),
-  selectedScaleIdx: 0,
+  selectedScaleIdx: 6,
   arpLengthOptions: ['2', '4', '8'],
-  selectedArpLengthOptionIdx: 1,
-  arpNotesOrderOptions: ['0123', '3210', '1032', '2301'], // updates on arpLength change
+  selectedArpLengthOptionIdx: 2,
+  arpNotesOrderOptions: arpNotesOrderOptionsList[2], // updates on arpLength change
   selectedArpNotesOrderOptionsIdx: 0,
   arpChordProgression: getProgression('major'),
   arpClipSelectedChord: [
-    4, 5, 6, 5, 0, 1, 2, 3
+    0, 2, 6, 3, 4, 2, 5, 1
   ],
   isClipPlaying: false
 };
@@ -38,7 +38,7 @@ export const rootReducer = (state = initialState, action = {}) => {
     case 'CHANGE_SCALE':
       newState = {...state, ...{
         selectedScaleIdx: action.data.idx,
-        arpChordProgression: getProgression(state.scales[state.selectedScaleIdx])
+        arpChordProgression: getProgression(state.scales[action.data.idx])
       }};
       replayClip(newState);
       return newState;
