@@ -1,4 +1,4 @@
-import { getProgression, playClip, stopClip } from './api';
+import { getProgression, playClip, stopClip, saveMidiFile } from './api';
 
 const arpNotesOrderOptionsList = [
   ['01', '10'],
@@ -9,14 +9,14 @@ const initialState = {
   keys: 'C Db D Eb E F Gb G Ab A Bb B'.split(' '),
   selectedKeyIdx: 7,
   scales: 'major minor dorian lydian mixolydian phrygian locrian'.split(' '),
-  selectedScaleIdx: 6,
+  selectedScaleIdx: 5,
   arpLengthOptions: ['2', '4', '8'],
-  selectedArpLengthOptionIdx: 2,
-  arpNotesOrderOptions: arpNotesOrderOptionsList[2], // updates on arpLength change
-  selectedArpNotesOrderOptionsIdx: 0,
-  arpChordProgression: getProgression('major'),
+  selectedArpLengthOptionIdx: 1,
+  arpNotesOrderOptions: arpNotesOrderOptionsList[1], // updates on arpLength change
+  selectedArpNotesOrderOptionsIdx: 2,
+  arpChordProgression: getProgression('phrygian'),
   arpClipSelectedChord: [
-    0, 2, 6, 3, 4, 2, 5, 1
+    0, 1, 0, 1, 0, 1, 0, 3
   ],
   isClipPlaying: false
 };
@@ -69,6 +69,9 @@ export const rootReducer = (state = initialState, action = {}) => {
     case 'STOP':
       stopClip();
       return {...state, ...{ isClipPlaying: false }};
+    case 'SAVE_MIDI':
+      saveMidiFile(state);
+      return state;
     default:
       return state;
   }

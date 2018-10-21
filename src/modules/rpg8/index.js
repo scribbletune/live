@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { rootReducer } from './reducer';
-import { initApp, changeKey, changeScale, changeArpLength, changeArpOrder, changeClipChord, play, stop } from './actions';
+import { initApp, changeKey, changeScale, changeArpLength, changeArpOrder, changeClipChord, play, stop, saveMidi } from './actions';
 import Selector from './Selector';
 import Clips from './Clips';
 
@@ -59,7 +59,7 @@ const render = () => {
       <div className="controls">
         <button onClick={play.bind(null, store.dispatch)} disabled={state.isClipPlaying}>Play</button>
         <button onClick={stop.bind(null, store.dispatch)} disabled={!state.isClipPlaying}>Stop</button>
-        <button>MIDI</button>
+        <button onClick={saveMidi.bind(null, store.dispatch)}>MIDI</button>
       </div>
 
     </section>),
