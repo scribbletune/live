@@ -1,19 +1,21 @@
-import { progression, arp, clip, midi } from 'scribbletune';
+import { progression, arp, clip, chord, midi } from 'scribbletune';
 
 Tone.Transport.start();
 
 let theClip;
 
-const getClipNotes = (state) => {
-  const theScale = state.keys[state.selectedKeyIdx] + '4 ' + state.scales[state.selectedScaleIdx];
+const getTheChords = (state) => {
+  const theScale = state.keys[state.selectedKeyIdx] + '3 ' + state.scales[state.selectedScaleIdx];
   const theChordProgression = state.arpClipSelectedChord.map(el => state.arpChordProgression[el]);
-  const theChords = progression.getChords(
+  return progression.getChords(
     theScale,
     theChordProgression.join(' ')
   );
+};
 
+const getClipNotes = (state) => {
   return arp({
-    chords: theChords,
+    chords: getTheChords(state),
     count: state.arpLengthOptions[state.selectedArpLengthOptionIdx],
     order: state.arpNotesOrderOptions[state.selectedArpNotesOrderOptionsIdx]
   });
@@ -22,9 +24,10 @@ const getClipNotes = (state) => {
 export const playClip = (state) => {
   theClip = clip({
     synth: 'Synth',
-    pattern: 'x',
+    pattern: state.pattern,
     notes: getClipNotes(state),
-    subdiv: '16n'
+    subdiv: '16n',
+    effects: ['PingPongDelay']
   });
   theClip.start();
 }

@@ -2,7 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { rootReducer } from './reducer';
-import { initApp, changeKey, changeScale, changeArpLength, changeArpOrder, changeClipChord, play, stop, saveMidi } from './actions';
+import { initApp,
+  changeKey,
+  changeScale,
+  changeArpLength,
+  changeArpOrder,
+  changeClipChord,
+  changePattern,
+  play,
+  stop,
+  saveMidi
+} from './actions';
 import Selector from './Selector';
 import Clips from './Clips';
 
@@ -56,6 +66,12 @@ const render = () => {
         selectedArr={state.arpClipSelectedChord}
         onClickHandler={changeClipChord.bind(null, store.dispatch)}
       />
+      {/*PATTERN*/}
+      <div>
+        <h3>Pattern</h3>
+        <input type="text" value={state.pattern} onChange={(e) => changePattern.bind(null, store.dispatch, e.target.value)()}/> 
+        Use x and - only!
+      </div>
       <div className="controls">
         <button onClick={play.bind(null, store.dispatch)} disabled={state.isClipPlaying}>Play</button>
         <button onClick={stop.bind(null, store.dispatch)} disabled={!state.isClipPlaying}>Stop</button>

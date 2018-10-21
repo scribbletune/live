@@ -7,7 +7,7 @@ const arpNotesOrderOptionsList = [
 ];
 const initialState = {
   keys: 'C Db D Eb E F Gb G Ab A Bb B'.split(' '),
-  selectedKeyIdx: 7,
+  selectedKeyIdx: 2,
   scales: 'major minor dorian lydian mixolydian phrygian locrian'.split(' '),
   selectedScaleIdx: 5,
   arpLengthOptions: ['2', '4', '8'],
@@ -18,6 +18,7 @@ const initialState = {
   arpClipSelectedChord: [
     0, 1, 0, 1, 0, 1, 0, 3
   ],
+  pattern: 'x-xx-xxx',
   isClipPlaying: false
 };
 
@@ -61,6 +62,10 @@ export const rootReducer = (state = initialState, action = {}) => {
         ...state,
         ...{ arpClipSelectedChord: newArpClipSelectedChord}
       }
+      replayClip(newState);
+      return newState;
+    case 'CHANGE_PATTERN':
+      newState = {...state, ...{pattern: action.data.pattern}}
       replayClip(newState);
       return newState;
     case 'PLAY':

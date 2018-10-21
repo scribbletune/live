@@ -8,6 +8,14 @@ export const changeClipChord = (dispatch, clipIdx, selectedChordIdx) => (dispatc
   type: 'CHANGE_CLIP_CHORD',
   data: { clipIdx, selectedChordIdx }
 }));
+export const changePattern = (dispatch, ptn) => {
+  if (ptn.match(/[^x\-]/)) {
+    return;
+  }
+  return dispatch({type: 'CHANGE_PATTERN', data: {
+    pattern: ptn
+  } });
+};
 
 export const play = dispatch => (dispatch({type: 'PLAY' }));
 export const stop = dispatch => (dispatch({type: 'STOP' }));
