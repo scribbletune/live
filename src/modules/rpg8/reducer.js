@@ -31,11 +31,13 @@ const replayClip = (state) => {
 
 export const rootReducer = (state = initialState, action = {}) => {
   let newState;
+
   switch (action.type) {
     case 'CHANGE_KEY':
       newState = {...state, ...{selectedKeyIdx: action.data.idx}};
       replayClip(newState);
       return newState;
+
     case 'CHANGE_SCALE':
       newState = {...state, ...{
         selectedScaleIdx: action.data.idx,
@@ -43,6 +45,7 @@ export const rootReducer = (state = initialState, action = {}) => {
       }};
       replayClip(newState);
       return newState;
+
     case 'CHANGE_ARP_LENGTH':
       newState = {...state, ...{
         selectedArpLengthOptionIdx: action.data.idx,
@@ -51,10 +54,12 @@ export const rootReducer = (state = initialState, action = {}) => {
       }};
       replayClip(newState);
       return newState;
+
     case 'CHANGE_ARP_ORDER':
       newState = {...state, ...{selectedArpNotesOrderOptionsIdx: action.data.idx}}
       replayClip(newState);
       return newState;
+
     case 'CHANGE_CLIP_CHORD':
       let newArpClipSelectedChord = [...state.arpClipSelectedChord];
       newArpClipSelectedChord[action.data.clipIdx] = action.data.selectedChordIdx.idx; // Selector sends an object {idx: n}
@@ -64,19 +69,25 @@ export const rootReducer = (state = initialState, action = {}) => {
       }
       replayClip(newState);
       return newState;
+
     case 'CHANGE_PATTERN':
       newState = {...state, ...{pattern: action.data.pattern}}
       replayClip(newState);
       return newState;
+
     case 'PLAY':
       playClip(state);
       return {...state, ...{ isClipPlaying: true }};
+
     case 'STOP':
       stopClip();
       return {...state, ...{ isClipPlaying: false }};
+
     case 'SAVE_MIDI':
       saveMidiFile(state);
+      // No state change required
       return state;
+
     default:
       return state;
   }
