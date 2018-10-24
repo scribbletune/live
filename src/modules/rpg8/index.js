@@ -7,6 +7,7 @@ import { initApp,
   changeScale,
   changeArpLength,
   changeArpOrder,
+  changeSubdivOption,
   changeClipChord,
   changePattern,
   play,
@@ -58,6 +59,14 @@ const render = () => {
           data={state.arpNotesOrderOptions}
           selectedIdx={state.selectedArpNotesOrderOptionsIdx}
           onClickHandler={changeArpOrder.bind(null, store.dispatch)}
+        />
+
+        {/*NOTE LENGTH OPTIONS 1/2 1/4 1/8 1/16*/}
+        <Selector
+          title="Note length"
+          data={state.subdivOptions}
+          selectedIdx={state.selectedSubdivOption}
+          onClickHandler={changeSubdivOption.bind(null, store.dispatch)}
         />
       </div>
       {/*PROGRESSION*/}

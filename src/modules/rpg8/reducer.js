@@ -18,6 +18,9 @@ const initialState = {
   arpClipSelectedChord: [
     0, 1, 0, 1, 0, 1, 0, 3
   ],
+  subdivOptions: ['1/2', '1/4', '1/8', '1/16'],
+  subdivs: ['2n', '4n', '8n', '16n'],
+  selectedSubdivOption: 3,
   pattern: 'x-xx-xxx',
   isClipPlaying: false
 };
@@ -57,6 +60,11 @@ export const rootReducer = (state = initialState, action = {}) => {
 
     case 'CHANGE_ARP_ORDER':
       newState = {...state, ...{selectedArpNotesOrderOptionsIdx: action.data.idx}}
+      replayClip(newState);
+      return newState;
+
+    case 'CHANGE_SUBDIV_OPTION':
+      newState = {...state, ...{selectedSubdivOption: action.data.idx}}
       replayClip(newState);
       return newState;
 
