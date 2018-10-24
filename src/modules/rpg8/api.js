@@ -42,8 +42,8 @@ export const saveMidiFile = (state) => {
   const theNotes = getClipNotes(state);
   const c = clip({
     notes: theNotes,
-    pattern: 'x'.repeat(theNotes.length),
-    subdiv: state.subdivOptions[state.selectedSubdivOption]
+    pattern: state.pattern.repeat(theNotes.length),
+    subdiv: state.subdivs[state.selectedSubdivOption]
   });
   const b64 = btoa(midi(c, null)); // Encode byte string from Scribbletune as base64
   const uri = 'data:audio/midi;base64,' + b64;
