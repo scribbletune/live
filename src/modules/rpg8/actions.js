@@ -18,6 +18,15 @@ export const changePattern = (dispatch, ptn) => {
   } });
 };
 
+export const changeBpm = (dispatch, bpm) => {
+  if (bpm.match(/[^\d]/)) {
+    return;
+  }
+  return dispatch({type: 'CHANGE_BPM', data: {
+    bpm: bpm
+  } });
+};
+
 export const play = dispatch => (dispatch({type: 'PLAY' }));
 export const stop = dispatch => (dispatch({type: 'STOP' }));
 export const saveMidi = dispatch => (dispatch({type: 'SAVE_MIDI' }));

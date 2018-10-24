@@ -10,6 +10,7 @@ import { initApp,
   changeSubdivOption,
   changeClipChord,
   changePattern,
+  changeBpm,
   play,
   stop,
   saveMidi
@@ -80,6 +81,11 @@ const render = () => {
         <h3>Pattern</h3>
         <input type="text" value={state.pattern} onChange={(e) => changePattern.bind(null, store.dispatch, e.target.value)()}/> 
         Use x and - only!
+      </div>
+    {/*BPM*/}
+      <div>
+        <h3>BPM</h3>
+        <input type="text" value={state.bpm} onChange={(e) => changeBpm.bind(null, store.dispatch, e.target.value)()}/>
       </div>
       <div className="controls">
         <button onClick={play.bind(null, store.dispatch)} disabled={state.isClipPlaying}>Play</button>

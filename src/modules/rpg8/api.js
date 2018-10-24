@@ -29,6 +29,7 @@ export const playClip = (state) => {
     subdiv: state.subdivs[state.selectedSubdivOption],
     effects: ['PingPongDelay']
   });
+  Tone.Transport.bpm.value = state.bpm;
   theClip.start();
 }
 

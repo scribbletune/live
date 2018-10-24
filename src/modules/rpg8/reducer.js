@@ -22,6 +22,7 @@ const initialState = {
   subdivs: ['2n', '4n', '8n', '16n'],
   selectedSubdivOption: 3,
   pattern: 'x-xx-xxx',
+  bpm: 135,
   isClipPlaying: false
 };
 
@@ -80,6 +81,11 @@ export const rootReducer = (state = initialState, action = {}) => {
 
     case 'CHANGE_PATTERN':
       newState = {...state, ...{pattern: action.data.pattern}}
+      replayClip(newState);
+      return newState;
+
+    case 'CHANGE_BPM':
+      newState = {...state, ...{bpm: action.data.bpm}}
       replayClip(newState);
       return newState;
 
