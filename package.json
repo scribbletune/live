@@ -40,7 +40,7 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "redux": "^4.0.0",
-    "scribbletune": "^1.5.1",
+    "scribbletune": "^1.9.1",
     "styled-components": "^3.4.6"
   }
 }
