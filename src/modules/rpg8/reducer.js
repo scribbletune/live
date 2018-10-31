@@ -1,8 +1,8 @@
 import { getProgression, playClip, stopClip, saveMidiFile } from './api';
 
 const arpNotesOrderOptionsList = [
-  ['01', '10', '0001', '1011'],
-  ['0123', '3210', '1032', '2301', '010203', '323130', '101312', '232021'],
+  ['01', '10', '0001', '0010', '1011', '1100', '1101'],
+  ['0123', '3210', '1032', '2301', '010203', '101312', '232021', '323130', '001002003', '110113112', '223220221', '332331330'],
   [
     '01234567',
     '76543210',
@@ -11,17 +11,25 @@ const arpNotesOrderOptionsList = [
     '10325476',
     '67453201',
     '01020304050607',
-    '76757473727170',
+    '10131215141716',
+    '20212324252627',
     '32313037363534',
     '45464740414243',
-    '10131215141716',
     '67646563626061',
+    '76757473727170',
+    '001002003004005006007',
+    '110113112115114117116',
+    '220221223224225226227',
+    '332331330337336335334',
+    '445446447440441442443',
+    '667664665663662660661',
+    '776775774773772771770'
   ],
 ];
 const initialState = {
   keys: 'C Db D Eb E F Gb G Ab A Bb B'.split(' '),
   selectedKeyIdx: 2,
-  scales: 'major minor dorian lydian mixolydian phrygian locrian'.split(' '),
+  scales: ['major', 'minor', 'dorian', 'lydian', 'mixolydian', 'phrygian', 'locrian', 'melodic minor', 'harmonic minor'],
   selectedScaleIdx: 5,
   arpLengthOptions: ['2', '4', '8'],
   selectedArpLengthOptionIdx: 1,
