@@ -26,8 +26,7 @@ export const playClip = (state) => {
     synth: 'Synth',
     pattern: state.pattern,
     notes: getClipNotes(state),
-    subdiv: state.subdivs[state.selectedSubdivOption],
-    effects: ['PingPongDelay']
+    subdiv: state.subdivs[state.selectedSubdivOption]
   });
   Tone.Transport.bpm.value = state.bpm;
   theClip.start();
@@ -48,8 +47,8 @@ export const saveMidiFile = (state) => {
   });
   const b64 = btoa(midi(c, null)); // Encode byte string from Scribbletune as base64
   const uri = 'data:audio/midi;base64,' + b64;
-  const link=document.createElement('a');
-  link.href=uri;
+  const link = document.createElement('a');
+  link.href = uri;
   link.download = 'arp.mid';
   link.click();
 };

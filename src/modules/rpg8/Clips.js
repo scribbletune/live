@@ -22,7 +22,7 @@ const Clips = ({ progression, selectedArr, onClickHandler }) => {
   });
   return (
     <section>
-      <h3>Clips</h3>
+      <h3>Chords sequence</h3>
       <div className="clips">{clipsDom}</div>
     </section>
   );
