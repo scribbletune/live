@@ -10,9 +10,10 @@ export const changeClipChord = (dispatch, clipIdx, selectedChordIdx) => (dispatc
   data: { clipIdx, selectedChordIdx }
 }));
 export const changePattern = (dispatch, ptn) => {
-  if (ptn.match(/[^x\-]/)) {
+  if (ptn.match(/[^x\-\[\]]/)) {
     return;
   }
+  
   return dispatch({type: 'CHANGE_PATTERN', data: {
     pattern: ptn
   } });
