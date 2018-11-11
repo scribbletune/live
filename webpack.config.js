@@ -7,7 +7,8 @@ module.exports = {
 		example: './src/example.js',
 		sequencer: './src/modules/Sequencer/index.js',
 		detect: './src/modules/DetectScales/index.js',
-		rpg8: './src/modules/rpg8/index.js'
+		rpg8: './src/modules/rpg8/index.js',
+		rpg8rs: './src/modules/rpg8rs/index.js'
 	},
 	mode: 'development',
 	output: {
