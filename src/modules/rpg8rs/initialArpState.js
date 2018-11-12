@@ -29,5 +29,6 @@ export const notesOrder = [
   ],
 ];
 
+export const notesCountList = [2, 4, 8];
 export const subdivOptions = ['1/2', '1/4', '1/8', '1/16'];
 export const subdivs = ['2n', '4n', '8n', '16n'];

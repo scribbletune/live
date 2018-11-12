@@ -2,41 +2,32 @@ import { progression, arp, clip, chord, midi } from 'scribbletune';
 
 Tone.Transport.start();
 
-let theClip;
+let theClips = [];
 
-const getTheChords = (state) => {
-  const theScale = state.keys[state.selectedKeyIdx] + '3 ' + state.scales[state.selectedScaleIdx];
-  const theChordProgression = state.arpClipSelectedChord.map(el => state.arpChordProgression[el]);
+export const getChordsProgressionForScale = (theScale, theChordProgressionStr) => {
   return progression.getChords(
     theScale,
-    theChordProgression.join(' ')
+    theChordProgressionStr
   );
 };
 
-const getClipNotes = (state) => {
-  return arp({
-    chords: getTheChords(state),
-    count: state.arpLengthOptions[state.selectedArpLengthOptionIdx],
-    order: state.arpNotesOrderOptions[state.selectedArpNotesOrderOptionsIdx]
-  });
-};
+export const getArpNotes = arp;
 
-export const playClip = (state) => {
-  theClip = clip({
-    synth: 'Synth',
-    pattern: state.pattern,
-    notes: getClipNotes(state),
-    subdiv: state.subdivs[state.selectedSubdivOption]
-  });
+export const playClips = (state) => {
   Tone.Transport.bpm.value = state.bpm;
-  theClip.start();
+  state.arps.forEach((arp, idx) => {
+    theClips[idx] = clip({...arp, ...{synth: 'Synth'}});
+    theClips[idx].start();
+  });
 }
 
-export const stopClip = () => {
-  theClip.stop();
+export const stopClips = () => {
+  theClips.forEach((c) => {
+    c.stop();
+  });
 };
 
-export const getProgression = scale => progression.get(scale);
+export const getChordDegrees = scale => progression.get(scale);
 
 export const saveMidiFile = (state) => {
   const theNotes = getClipNotes(state);
