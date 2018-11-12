@@ -21,6 +21,7 @@ const render = () => {
         <div className="mb-3 p-2 controls">
           <button className="btn btn-success" onClick={play.bind(null, store.dispatch)} disabled={state.isClipPlaying}>Play</button>
           <button className="btn btn-danger" onClick={stop.bind(null, store.dispatch)} disabled={!state.isClipPlaying}>Stop</button>
+          <button className="btn" disabled>Export MIDI (coming soon)</button>
         </div>
         <div className="row">
           <Rpg8rs

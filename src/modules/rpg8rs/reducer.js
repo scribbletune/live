@@ -1,7 +1,7 @@
 import {playClips, stopClips} from './api';
 
 const initialState = {
-  isPlaying: false,
+  isClipPlaying: false,
   bpm: 135,
   arps: []
 };
