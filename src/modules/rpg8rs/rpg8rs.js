@@ -25,7 +25,7 @@ const Rpg8rs = ({
   const [pattern, setPattern] = useState(defaultPattern);
 
   const getTheChords = () => {
-    const theScale = keys[keyIdx] + '3 ' + scales[scaleIdx];
+    const theScale = keys[keyIdx] + (idx + 2) + ' ' + scales[scaleIdx];
     const chordDegrees = getChordDegrees(scales[scaleIdx]);
     const theChordProgression = arpChordProgression.map(el => chordDegrees[el]);
     return getChordsProgressionForScale(
