@@ -5,14 +5,24 @@ import { keys, scales, notesCountList, notesOrder, subdivOptions, subdivs } from
 import { getChordDegrees, getChordsProgressionForScale, getArpNotes } from './api';
 import { updateClip } from './actions';
 
-const Rpg8rs = ({ idx, dispatch }) => {
-	const [keyIdx, setKeyIdx] = useState(2);
-	const [scaleIdx, setScaleIdx] = useState(2);
-  const [arpChordProgression, setArpChordProgression] = useState([0, 1, 0, 1, 0, 1, 0, 3]);
-  const [notesCountIdx, setNotesCountIdx] = useState(1);
-  const [notesOrderIdx, setNotesOrderIdx] = useState(0);
-  const [subdivOptionsIdx, setSubdivOptionsIdx] = useState(3);
-  const [pattern, setPattern] = useState('x-xx-xxx');
+const Rpg8rs = ({
+  idx,
+  dispatch,
+  defaultKeyIdx = 2,
+  defaultScaleIdx = 2,
+  defaultArpChordProgression = [0, 1, 0, 1, 0, 1, 0, 3],
+  defaultNotesCountIdx = 1,
+  defaultNotesOrderIdx = 0,
+  defaultSubdivOptionsIdx = 3,
+  defaultPattern = 'x-xx-xxx'
+}) => {
+	const [keyIdx, setKeyIdx] = useState(defaultKeyIdx);
+	const [scaleIdx, setScaleIdx] = useState(defaultScaleIdx);
+  const [arpChordProgression, setArpChordProgression] = useState(defaultArpChordProgression);
+  const [notesCountIdx, setNotesCountIdx] = useState(defaultNotesCountIdx);
+  const [notesOrderIdx, setNotesOrderIdx] = useState(defaultNotesOrderIdx);
+  const [subdivOptionsIdx, setSubdivOptionsIdx] = useState(defaultSubdivOptionsIdx);
+  const [pattern, setPattern] = useState(defaultPattern);
 
   const getTheChords = () => {
     const theScale = keys[keyIdx] + '3 ' + scales[scaleIdx];
@@ -104,13 +114,13 @@ const Rpg8rs = ({ idx, dispatch }) => {
 
     <div>
       <h3>Pattern/Step Sequencer</h3>
+      <p>Use x for step on and - for step off. Use square braces to subdivide a step. For example x-[xx]x</p>
       <input type="text" value={pattern} onChange={(e) => {
         if (e.target.value.match(/[^x\-\[\]]/) || !e.target.value) {
           return;
         }
         setPattern(e.target.value);
       }}/>
-      Use x and - only!
     </div>
 	</div>);
 }

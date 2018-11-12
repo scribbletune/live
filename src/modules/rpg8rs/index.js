@@ -18,13 +18,25 @@ const render = () => {
   ReactDOM.render(
     (<Provider store={store}>
       <section>
-        <div className="row">
-          <Rpg8rs idx={0} />
-          <Rpg8rs idx={1} />
+        <div className="mb-3 p-2 controls">
+          <button className="btn btn-success" onClick={play.bind(null, store.dispatch)} disabled={state.isClipPlaying}>Play</button>
+          <button className="btn btn-danger" onClick={stop.bind(null, store.dispatch)} disabled={!state.isClipPlaying}>Stop</button>
         </div>
-        <div>
-          <button onClick={play.bind(null, store.dispatch)} disabled={state.isClipPlaying}>Play</button>
-          <button onClick={stop.bind(null, store.dispatch)} disabled={!state.isClipPlaying}>Stop</button>
+        <div className="row">
+          <Rpg8rs
+            idx={0}
+            defaultKeyIdx={5}
+            defaultScaleIdx={4}
+            defaultPattern={'x-x[xx]'}
+            defaultNotesCountIdx={0}
+            defaultSubdivOptionsIdx={2}
+            defaultNotesOrderIdx={2}
+          />
+          <Rpg8rs
+            idx={1}
+            defaultScaleIdx={8}
+            defaultNotesOrderIdx={8}
+          />
         </div>
       </section>
     </Provider>),

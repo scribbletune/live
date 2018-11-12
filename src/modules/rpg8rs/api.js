@@ -22,8 +22,8 @@ export const playClips = (state) => {
 }
 
 export const stopClips = () => {
-  theClips.forEach((c) => {
-    c.stop();
+  theClips.forEach((arp, idx) => {
+    theClips[idx].stop();
   });
 };
 

@@ -18,8 +18,8 @@ export const rootReducer = (state = initialState, action = {}) => {
     case 'UPDATE_CLIP':
       let newArps = [...state.arps];
       newArps[action.data.clipIdx] = action.data.clipData;
-      let newState = {...state, ...{arps: newArps}};
-      replayClips(newState);
+      let newState = {...state, ...{arps: newArps, isClipPlaying: false}};
+      stopClips();
       return newState;
 
     case 'PLAY':
