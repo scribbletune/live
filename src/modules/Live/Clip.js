@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Cell = styled.li`
-  display: flex;
+	display: flex;
+	background-color: #333;
   align-items: center;
   justify-content: center;
   height: 50px;

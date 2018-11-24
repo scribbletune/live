@@ -10,7 +10,7 @@ const Cell = styled.li`
   justify-content: center;
   height: 50px;
   cursor: pointer;
-  background: lightyellow;
+  background: black;
   &:hover {
     background: lemonchiffon;
   }
