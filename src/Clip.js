@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { Mutation } from 'react-apollo';
 import Modal from 'react-bootstrap/Modal';
 import { Container, Row, Col, ButtonGroup, Button } from 'react-bootstrap';
+import { STOP_CLIP, PLAY_CLIP } from './gql';
 
 function Clip(props) {
   const [showModal, setShowModal] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
   const [pattern, setPattern] = useState(props.pattern || '');
   const [notes, setNotes] = useState(props.notes || '');
   const [randomNotes, setRandomNotes] = useState(props.randomNotes || '');
@@ -20,17 +21,35 @@ function Clip(props) {
       );
     }
 
-    if (isPlaying) {
+    if (props.activeClipIdx === props.idx) {
+      // Clip is playing
       return (
-        <Button variant="danger" onClick={() => setIsPlaying(false)}>
-          &#9632;
-        </Button>
+        <Mutation
+          mutation={STOP_CLIP}
+          variables={{ channelId: props.channelId }}
+        >
+          {stopClip => (
+            <Button variant="danger" onClick={stopClip}>
+              {' '}
+              &#9632;
+            </Button>
+          )}
+        </Mutation>
       );
     } else {
+      // Clip is stopped
       return (
-        <Button variant="success" onClick={() => setIsPlaying(true)}>
-          &#9658;
-        </Button>
+        <Mutation
+          mutation={PLAY_CLIP}
+          variables={{ channelId: props.channelId, clipId: props.idx }}
+        >
+          {playClip => (
+            <Button variant="success" onClick={playClip}>
+              {' '}
+              &#9658;
+            </Button>
+          )}
+        </Mutation>
       );
     }
   };
@@ -42,7 +61,7 @@ function Clip(props) {
         <Button
           variant={pattern ? 'secondary' : 'outline-secondary'}
           onClick={() => setShowModal(true)}
-          disabled={isPlaying}
+          disabled={props.activeClipIdx === props.idx}
           dangerouslySetInnerHTML={{
             __html: pattern ? '⚙' : '&#160;&#160;&#160;&#160;&#160;&#160;',
           }}
@@ -51,7 +70,7 @@ function Clip(props) {
 
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Clip</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Container>

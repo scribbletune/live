@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Mutation } from 'react-apollo';
+import { PLAY_ROW, ADD_ROW } from './gql';
 import Transport from './Transport';
 import Channel from './Channel';
-import track from './track';
 
-function App() {
-  const [channels, setChannels] = useState(track.channels);
+function App(props) {
   return (
     <Container>
       <Row>
@@ -15,30 +15,42 @@ function App() {
         </Col>
       </Row>
       <Row>
-        {channels.map((channel, idx) => (
-          <Channel channel={channel} idx={idx} key={idx} />
-        ))}
+        {props.channels.length &&
+          props.channels.map(channel => (
+            <Channel channel={channel} key={channel.idx} />
+          ))}
         <Col>
           {/* Draw out the buttons on the far right to trigger each row */}
-          {channels[0].clips.map((el, idx) => (
-            <div className="clip" key={idx}>
-              <Button variant="outline-dark"> &#9658;</Button>
-            </div>
-          ))}
+          {props.channels.length &&
+            props.channels[0].clips.map((el, idx) => (
+              <div className="clip" key={idx}>
+                <Mutation
+                  mutation={PLAY_ROW}
+                  variables={{ activeClipIdx: idx }}
+                >
+                  {playRow => (
+                    <Button variant="outline-dark" onClick={playRow}>
+                      {' '}
+                      &#9658;
+                    </Button>
+                  )}
+                </Mutation>
+              </div>
+            ))}
           {/* Add a button at the bottom of "row triggers" to insert a new row (scene) */}
           <div className="clip">
-            <Button
-              variant="outline-light"
-              onClick={() => {
-                const newChannels = [...channels];
-                newChannels.forEach(channel => channel.clips.push({}));
-                setChannels(newChannels);
-              }}
+            <Mutation
+              mutation={ADD_ROW}
+              variables={{ needlessVar: 'NEEDLESS' }}
             >
-              <span role="img" aria-label="">
-                ➕
-              </span>
-            </Button>
+              {addRow => (
+                <Button variant="outline-light" onClick={addRow}>
+                  <span role="img" aria-label="">
+                    ➕
+                  </span>
+                </Button>
+              )}
+            </Mutation>
           </div>
         </Col>
       </Row>

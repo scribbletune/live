@@ -2,13 +2,18 @@ import React, { useState } from 'react';
 import { Col } from 'react-bootstrap';
 import Clip from './Clip';
 
-function Channel({ channel, idx }) {
+function Channel({ channel }) {
   const [volume, setVolume] = useState(channel.volume || 0.7);
   return (
     <>
       <Col>
         {channel.clips &&
-          channel.clips.map((c, idx) => <Clip {...c} idx={idx} key={idx} />)}
+          channel.clips.map((c, idx) => {
+            c.idx = idx;
+            c.activeClipIdx = channel.activeClipIdx;
+            c.channelId = channel.idx;
+            return <Clip {...c} key={idx} />;
+          })}
         <div className="volumeSlider">
           <input
             type="range"
