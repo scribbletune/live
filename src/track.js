@@ -3,6 +3,8 @@ import { scale } from 'scribbletune';
 export default {
   channels: [
     {
+      name: 'Kick',
+      volume: 0.8,
       clips: [
         { pattern: 'x--', notes: 'c4', subdiv: '16n' },
         {},
@@ -10,6 +12,8 @@ export default {
       ],
     },
     {
+      name: 'Ch',
+      volume: 0.8,
       clips: [
         {},
         {
@@ -21,6 +25,8 @@ export default {
       ],
     },
     {
+      name: 'Oh',
+      volume: 0.8,
       clips: [
         {},
         {
@@ -32,6 +38,8 @@ export default {
       ],
     },
     {
+      name: 'Snare',
+      volume: 0.8,
       clips: [
         {},
         {
@@ -43,6 +51,8 @@ export default {
       ],
     },
     {
+      name: 'Bass',
+      volume: 0.8,
       clips: [
         {},
         {
@@ -54,6 +64,8 @@ export default {
       ],
     },
     {
+      name: 'Piano',
+      volume: 0.8,
       clips: [
         {},
         {
@@ -65,6 +77,8 @@ export default {
       ],
     },
     {
+      name: 'Synth',
+      volume: 0.8,
       clips: [
         {},
         {
@@ -76,6 +90,8 @@ export default {
       ],
     },
     {
+      name: 'Pad',
+      volume: 0.8,
       clips: [
         {},
         {
