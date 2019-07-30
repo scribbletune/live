@@ -15,6 +15,7 @@ export const GET_DATA = gql`
         dur
       }
     }
+    isPlaying @client
   }
 `;
 
@@ -39,5 +40,11 @@ export const PLAY_CLIP = gql`
 export const ADD_ROW = gql`
   mutation addRow($needlessVar: String!) {
     addRow(needlessVar: $needlessVar) @client
+  }
+`;
+
+export const START_STOP_TRACK = gql`
+  mutation startStopTrack($isPlaying: Boolean!) {
+    startStopTrack(isPlaying: $isPlaying) @client
   }
 `;

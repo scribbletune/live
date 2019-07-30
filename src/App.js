@@ -11,7 +11,7 @@ function App(props) {
       <Row>
         <Col md={5} />
         <Col md={7}>
-          <Transport />
+          <Transport isPlaying={props.isPlaying} />
         </Col>
       </Row>
       <Row>

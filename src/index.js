@@ -5,7 +5,7 @@ import { ApolloProvider, Query } from 'react-apollo';
 import { GET_DATA } from './gql';
 import resolvers from './resolvers';
 import App from './App';
-import track from './track';
+import track from './track-init';
 import './index.css';
 
 const cache = new InMemoryCache();
@@ -17,14 +17,15 @@ const client = new ApolloClient({
 cache.writeData({
   data: {
     ...track,
+    isPlaying: false,
   },
 });
 
 render(
   <ApolloProvider client={client}>
     <Query query={GET_DATA}>
-      {({ data: { channels } }) => {
-        return <App channels={channels} />;
+      {({ data: { channels, isPlaying } }) => {
+        return <App channels={channels} isPlaying={isPlaying} />;
       }}
     </Query>
   </ApolloProvider>,

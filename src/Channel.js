@@ -18,10 +18,10 @@ function Channel({ channel }) {
           <input
             type="range"
             orient="vertical"
-            min="0"
-            max="1"
+            min="-60"
+            max="6"
             value={volume}
-            step="0.01"
+            step="1"
             onChange={e => {
               setVolume(e.target.value);
             }}
