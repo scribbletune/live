@@ -22,7 +22,7 @@ function Transport({ isPlaying }) {
         <Mutation mutation={START_STOP_TRACK} variables={{ isPlaying: true }}>
           {startStopTrack => (
             <Button
-              variant="dark"
+              variant={isPlaying ? 'success' : 'dark'}
               onClick={startStopTrack}
               disabled={isPlaying}
             >

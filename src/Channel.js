@@ -12,6 +12,7 @@ function Channel({ channel }) {
             c.idx = idx;
             c.activeClipIdx = channel.activeClipIdx;
             c.channelId = channel.idx;
+            c.pattern = c.pattern || '';
             return <Clip {...c} key={idx} />;
           })}
         <div className="volumeSlider">

@@ -9,10 +9,6 @@ export const GET_DATA = gql`
       volume
       clips @client {
         pattern
-        notes
-        randomNotes
-        subdiv
-        dur
       }
     }
     isPlaying @client
@@ -34,12 +30,6 @@ export const STOP_CLIP = gql`
 export const PLAY_CLIP = gql`
   mutation playClip($channelId: Number!, $clipId: Number!) {
     playClip(channelId: $channelId, clipId: $clipId) @client
-  }
-`;
-
-export const ADD_ROW = gql`
-  mutation addRow($needlessVar: String!) {
-    addRow(needlessVar: $needlessVar) @client
   }
 `;
 

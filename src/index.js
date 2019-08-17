@@ -3,15 +3,15 @@ import { render } from 'react-dom';
 import ApolloClient, { InMemoryCache } from 'apollo-boost';
 import { ApolloProvider, Query } from 'react-apollo';
 import { GET_DATA } from './gql';
-import resolvers from './resolvers';
+import getResolvers from './resolvers';
 import App from './App';
-import track from './track-init';
+import track from './tracks/init';
 import './index.css';
 
 const cache = new InMemoryCache();
 const client = new ApolloClient({
   cache,
-  resolvers: resolvers,
+  resolvers: getResolvers(track),
 });
 
 cache.writeData({

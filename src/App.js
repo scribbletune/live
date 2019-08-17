@@ -1,13 +1,13 @@
 import React from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { Mutation } from 'react-apollo';
-import { PLAY_ROW, ADD_ROW } from './gql';
+import { PLAY_ROW } from './gql';
 import Transport from './Transport';
 import Channel from './Channel';
 
 function App(props) {
   return (
-    <Container>
+    <Container fluid={true}>
       <Row>
         <Col md={5} />
         <Col md={7}>
@@ -37,21 +37,6 @@ function App(props) {
                 </Mutation>
               </div>
             ))}
-          {/* Add a button at the bottom of "row triggers" to insert a new row (scene) */}
-          <div className="clip">
-            <Mutation
-              mutation={ADD_ROW}
-              variables={{ needlessVar: 'NEEDLESS' }}
-            >
-              {addRow => (
-                <Button variant="outline-light" onClick={addRow}>
-                  <span role="img" aria-label="">
-                    ➕
-                  </span>
-                </Button>
-              )}
-            </Mutation>
-          </div>
         </Col>
       </Row>
     </Container>
