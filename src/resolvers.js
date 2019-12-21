@@ -5,7 +5,34 @@ const Tone = window.Tone;
 Tone.Transport.bpm.value = 138;
 
 const getResolvers = track => {
-  const trackSession = new Session(track.channels);
+  const channels = track.channels.map(ch => {
+    const channelClips = ch.clips.map(cl => {
+      try {
+        let clipObj;
+        if (cl.clipStr) {
+          /*eslint-disable */
+          clipObj = JSON.parse(cl.clipStr);
+          /*eslint-enable */
+        }
+        if (clipObj.pattern) {
+          cl.pattern = clipObj.pattern;
+        }
+
+        if (clipObj.notes) {
+          cl.notes = clipObj.notes;
+        }
+
+        if (clipObj.randomNotes) {
+          cl.randomNotes = clipObj.randomNotes;
+        }
+      } catch (e) {}
+
+      return cl;
+    });
+    ch.clips = channelClips;
+    return ch;
+  });
+  const trackSession = new Session(channels);
   return {
     Mutation: {
       startStopTrack: (_root, { isPlaying }, { cache }) => {

@@ -48,3 +48,21 @@ input[type='range'][orient='vertical'] {
   padding-left: 43px;
   margin-top: 60px;
 }
+
+.ptn {
+  display: flex;
+}
+
+.noteCel {
+  width: 100px;
+  height: 25px;
+  border: 1px solid black;
+}
+
+.noteOn {
+  background: red;
+}
+
+.noteOff {
+  background: gray;
+}

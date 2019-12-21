@@ -5,7 +5,7 @@ import { ApolloProvider, Query } from 'react-apollo';
 import { GET_DATA } from './gql';
 import getResolvers from './resolvers';
 import App from './App';
-import track from './tracks/half';
+import track from './tracks/dummy';
 import './index.css';
 
 const cache = new InMemoryCache();

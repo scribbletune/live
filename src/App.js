@@ -6,6 +6,7 @@ import Transport from './Transport';
 import Channel from './Channel';
 
 function App(props) {
+  console.log(props);
   return (
     <Container fluid={true}>
       <Row>
