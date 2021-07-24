@@ -127,6 +127,40 @@ const getResolvers = track => {
         trackSession.channels[channelId].startClip(clipId);
         return null;
       },
+
+      setVolume: (_root, { channelId, volume }, { cache }) => {
+        const existingData = cache.readQuery({
+          query: GET_DATA,
+        });
+        const newChannels = existingData.channels.map(ch => {
+          const newChannel = { ...ch };
+          if (ch.idx === channelId) {
+            newChannel.volume = volume;
+            // set channel volume
+          }
+          return newChannel;
+        });
+        cache.writeData({
+          data: {
+            channels: newChannels,
+          },
+        });
+        // Change volume of the active clip on the channelId passed in this method
+        trackSession.channels[channelId].volume = volume;
+
+        // Change volume of the player
+        if (trackSession.channels[channelId].player) {
+          trackSession.channels[channelId].player.volume.value = volume;
+        }
+
+        // Change volume of the sampler
+        if (trackSession.channels[channelId].sampler) {
+          trackSession.channels[channelId].sampler.volume.value = volume;
+        }
+        
+        return null;
+      },
+          
     },
   };
 };
