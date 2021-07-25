@@ -6,7 +6,7 @@ Tone.Transport.bpm.value = 138;
 
 const getResolvers = track => {
   const channels = track.channels.map(ch => {
-    const channelClips = ch.clips.map(cl => {
+    const channelClips = ch.clips.map((cl, idx) => {
       try {
         let clipObj;
         if (cl.clipStr) {
@@ -25,7 +25,11 @@ const getResolvers = track => {
         if (clipObj.randomNotes) {
           cl.randomNotes = clipObj.randomNotes;
         }
-      } catch (e) {}
+      } catch (e) {
+        if (cl.clipStr !== "''") {
+          console.log('Channel %o clip #%o Error %o', ch.name, idx, e);
+        }
+      }
 
       return cl;
     });
@@ -157,10 +161,10 @@ const getResolvers = track => {
         if (trackSession.channels[channelId].sampler) {
           trackSession.channels[channelId].sampler.volume.value = volume;
         }
-        
+
         return null;
       },
-          
+
     },
   };
 };
