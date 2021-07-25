@@ -38,3 +38,9 @@ export const START_STOP_TRACK = gql`
     startStopTrack(isPlaying: $isPlaying) @client
   }
 `;
+
+export const SET_VOLUME = gql`
+  mutation setVolume($channelId: Number!, $volume: Number!) {
+    setVolume(channelId: $channelId, volume: $volume) @client
+  }
+`;
