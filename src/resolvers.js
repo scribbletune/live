@@ -6,7 +6,7 @@ Tone.Transport.bpm.value = 138;
 
 const getResolvers = track => {
   const channels = track.channels.map(ch => {
-    const channelClips = ch.clips.map(cl => {
+    const channelClips = ch.clips.map((cl, idx) => {
       try {
         let clipObj;
         if (cl.clipStr) {
@@ -25,7 +25,11 @@ const getResolvers = track => {
         if (clipObj.randomNotes) {
           cl.randomNotes = clipObj.randomNotes;
         }
-      } catch (e) {}
+      } catch (e) {
+        if (cl.clipStr !== "''") {
+          console.log('Channel %o clip #%o Error %o', ch.name, idx, e);
+        }
+      }
 
       return cl;
     });
@@ -33,6 +37,22 @@ const getResolvers = track => {
     return ch;
   });
   const trackSession = new Session(channels);
+
+  const setChannelVolume = (channelId, volume) => {
+    // Change volume of the active clip on the channelId
+    trackSession.channels[channelId].volume = volume;
+
+    // Change volume of the player
+    if (trackSession.channels[channelId].player) {
+      trackSession.channels[channelId].player.volume.value = volume;
+    }
+
+    // Change volume of the sampler
+    if (trackSession.channels[channelId].sampler) {
+      trackSession.channels[channelId].sampler.volume.value = volume;
+    }
+  };
+
   return {
     Mutation: {
       startStopTrack: (_root, { isPlaying }, { cache }) => {
@@ -75,6 +95,7 @@ const getResolvers = track => {
 
         const newChannels = existingData.channels.map(ch => {
           trackSession.channels[ch.idx].startClip(activeClipIdx);
+          setChannelVolume(ch.idx, ch.volume);
           return {
             ...ch,
             activeClipIdx,
@@ -108,6 +129,7 @@ const getResolvers = track => {
         const existingData = cache.readQuery({
           query: GET_DATA,
         });
+        let volume;
         const newChannels = existingData.channels.map(ch => {
           const newChannel = {
             ...ch,
@@ -115,6 +137,7 @@ const getResolvers = track => {
           if (ch.idx === channelId) {
             newChannel.activeClipIdx = clipId;
             // play the new clip
+            volume = ch.volume;
           }
           return newChannel;
         });
@@ -125,6 +148,7 @@ const getResolvers = track => {
         });
         // Start the active clip on the channelId passed in this method
         trackSession.channels[channelId].startClip(clipId);
+        setChannelVolume(channelId, volume);
         return null;
       },
 
@@ -145,22 +169,11 @@ const getResolvers = track => {
             channels: newChannels,
           },
         });
-        // Change volume of the active clip on the channelId passed in this method
-        trackSession.channels[channelId].volume = volume;
 
-        // Change volume of the player
-        if (trackSession.channels[channelId].player) {
-          trackSession.channels[channelId].player.volume.value = volume;
-        }
-
-        // Change volume of the sampler
-        if (trackSession.channels[channelId].sampler) {
-          trackSession.channels[channelId].sampler.volume.value = volume;
-        }
-        
+        setChannelVolume(channelId, volume);
         return null;
       },
-          
+
     },
   };
 };
