@@ -51,6 +51,11 @@ const getResolvers = track => {
     if (trackSession.channels[channelId].sampler) {
       trackSession.channels[channelId].sampler.volume.value = volume;
     }
+
+    // Change volume of the instrument
+    if (trackSession.channels[channelId].instrument) {
+      trackSession.channels[channelId].instrument.volume.value = volume;
+    }
   };
 
   return {

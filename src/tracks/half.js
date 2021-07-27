@@ -6,7 +6,7 @@ export default {
     {
       name: 'Kick',
       sample: '/sounds/samples/kick.wav',
-      volume: -14,
+      volume: -44,
       clips: [
         {},
         {},
@@ -28,7 +28,7 @@ export default {
       name: 'Bass',
       sample: '',
       samples: samplers['mechaBass1'],
-      volume: -16,
+      volume: -46,
       clips: [
         {},
         {},
@@ -53,7 +53,7 @@ export default {
     {
       name: 'Ch',
       sample: '/sounds/samples/ch.wav',
-      volume: -12,
+      volume: -42,
       clips: [
         {},
         { pattern: '[xx][xx][xx][x[xR]]' },
@@ -70,7 +70,7 @@ export default {
     {
       name: 'Oh',
       sample: '/sounds/samples/ch2.wav',
-      volume: -14,
+      volume: -44,
       clips: [
         {},
         {},
@@ -87,7 +87,7 @@ export default {
     {
       name: 'Oh2',
       sample: '/sounds/samples/oh.wav',
-      volume: -18,
+      volume: -48,
       clips: [
         {},
         {},
@@ -104,7 +104,7 @@ export default {
     {
       name: 'Clap',
       sample: '/sounds/samples/clap.wav',
-      volume: -8,
+      volume: -38,
       clips: [
         {},
         {},
@@ -121,7 +121,7 @@ export default {
     {
       name: 'Acid',
       sample: '/sounds/samples/acid.wav',
-      volume: -12,
+      volume: -42,
       clips: [
         {},
         {},
@@ -138,7 +138,7 @@ export default {
     {
       name: 'Fx1',
       sample: '/sounds/samples/fx1.wav',
-      volume: -6,
+      volume: -36,
       clips: [
         { pattern: '----x---', subdiv: '1m' },
         { pattern: '----x---', subdiv: '1m' },
@@ -155,7 +155,7 @@ export default {
     {
       name: 'Fx3',
       sample: '/sounds/samples/fx3.wav',
-      volume: -18,
+      volume: -48,
       clips: [
         { pattern: '---x', subdiv: '1m' },
         { pattern: '---x', subdiv: '1m' },
@@ -172,7 +172,7 @@ export default {
     {
       name: 'Impact',
       sample: '/sounds/samples/impact2.wav',
-      volume: -2,
+      volume: -32,
       clips: [
         { pattern: 'x-------', subdiv: '1m' },
         {},
@@ -190,14 +190,14 @@ export default {
       name: 'Piano',
       sample: '',
       samples: samplers['piano'],
-      volume: -22,
+      volume: -52,
       clips: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
     },
     {
       name: 'Saw',
       sample: '',
       samples: samplers['superSaw'],
-      volume: -12,
+      volume: -42,
       clips: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
     },
     {
@@ -209,8 +209,7 @@ export default {
     },
   ].map((ch, idx) => {
     ch.clips = ch.clips.map(c => ({
-      ...{ pattern: '' },
-      ...c,
+      ...{ clipStr: (c.pattern ? JSON.stringify(c) : "''") },
       __typename: 'Clip',
     }));
     return {
