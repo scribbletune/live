@@ -1,0 +1,204 @@
+/* @import '~bootstrap/scss/bootstrap.scss'; */
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  margin: 0;
+
+  /* Hide elements that flow outside the viewable space */
+  overflow: hidden;
+
+  /* Force the body to fill the entire screen */
+  width: 100%;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+input[type='text'],
+textarea {
+  display: block;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+  width: 100%;
+}
+
+textarea {
+  height: 70px;
+}
+
+input[type='range'][orient='vertical'] {
+  appearance: slider-vertical; /* WebKit */
+  height: 175px;
+  padding: 0 5px;
+  width: 8px;
+  writing-mode: bt-lr; /* IE */
+}
+
+#root {
+  margin-top: 0.75rem; /* var(--bs-gutter-x); */
+}
+
+.row {
+  margin-bottom: 15px;
+}
+
+.clip {
+  margin: 10px 0;
+  text-align: center;
+}
+
+.transport {
+  text-align: right;
+}
+
+.volume-slider {
+  margin-top: 60px;
+  min-height: 180.6px;
+  padding: 0;
+  text-align: center;
+}
+
+.ptn {
+  display: flex;
+}
+
+.note-cell {
+  border: 1px solid #000;
+  height: 25px;
+  width: 100px;
+}
+
+.note-on {
+  background: #f00;
+}
+
+.note-off {
+  background: #808080;
+}
+
+.offcanvas {
+  margin-top: 0.75rem;
+}
+
+.toolbar.navbar {
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+.toolbar .navbar-text {
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.toolbar .btn-sidebar-open,
+.toolbar .btn-sidebar-close {
+  margin-left: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.toolbar .navbar-brand img,
+.offcanvas .navbar-brand img {
+  /* width: 32px; */
+  height: 32px;
+  margin-left: 0.5rem;
+  margin-right: 0.75rem;
+  vertical-align: middle;
+}
+
+.toolbar .form-switch .form-check-input:checked {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.25%29'/%3e%3c/svg%3e");
+}
+
+.toolbar .form-check-input:checked {
+  background-color: #fff;
+  border-color: #fff;
+}
+
+.toolbar .form-check-input {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Style toaster like Darkly theme from <https://bootswatch.com/darkly/> */
+
+.Toaster__manager-top {
+  /* Show toasts under NavBar*/
+  padding-top: 75px;
+}
+
+.toast {
+  width: 100%;
+}
+
+.Toaster__alert {
+  background-color: #444;
+  /* border-radius: ; */
+  box-shadow: none;
+  color: #fff; /* var(--bs-body-color); */
+  display: flex;
+  max-width: 100%;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+}
+
+.Toaster__alert .toast-header {
+  padding-right: 2.5em;
+}
+
+.Toaster__alert_text {
+  /* Style like Bootstrap toaster close button */
+  color: #fff; /* var(--bs-body-color); */
+}
+
+.Toaster__alert_close {
+  /* Style like Bootstrap toaster close button */
+  appearance: none;
+  background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
+  border: 0;
+  border-radius: 0.25rem;
+  box-sizing: content-box;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 400; /* var(--bs-body-font-weight); */
+  height: 1em;
+  line-height: 1;
+  opacity: 0.4;
+  /* outline: none; */
+  padding: 0.25em;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  width: 1em;
+}
+
+.Toaster__alert_close span {
+  /* Style like Bootstrap toaster close button, hide 'x', use img */
+  display: none;
+}
+
+.Toaster__alert .btn-close {
+  display: none; /* Hide Bootstrap toaster close button */
+}
+
+.channel-state,
+.channel-state div {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.channel-state .channel-state-error {
+  color: #f00;
+  height: 36px;
+  width: 36px;
+}

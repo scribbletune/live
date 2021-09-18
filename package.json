@@ -1,46 +1,90 @@
 {
   "name": "live",
-  "version": "1.0.0",
-  "description": "Simplistic music performance app for the browser based on Ableton Live's interface for Sessions",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "npx webpack -d --watch",
-    "build": "npx webpack --config webpack.config.js",
-    "nuke": "rm -rf node_modules && rm package-lock.json && npm i",
-    "start": "webpack-dev-server"
-  },
-  "pre-commit": [
-    "build"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/scribbletune/live.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/scribbletune/live/issues"
-  },
-  "homepage": "https://github.com/scribbletune/live#readme",
-  "devDependencies": {
-    "@babel/core": "^7.7.7",
-    "@babel/preset-env": "^7.7.7",
-    "@babel/preset-react": "^7.7.4",
-    "babel-loader": "^8.0.6",
-    "pre-commit": "^1.2.2",
-    "webpack": "^4.41.4",
-    "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.10.1"
-  },
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-redux": "^7.1.3",
-    "react-router-dom": "^5.1.2",
-    "redux": "^4.0.4",
-    "scribbletune": "^3.4.1",
-    "styled-components": "^4.4.1"
+    "@apollo/client": "^3.4.8",
+    "bootstrap": "^5.1.0",
+    "file-saver": "^2.0.5",
+    "graphql": "^15.5.1",
+    "immer": "^9.0.6",
+    "jzz": "^1.3.9",
+    "jzz-synth-tiny": "^1.2.7",
+    "react": "^17.0.2",
+    "react-bootstrap": "^2.0.0-beta.6",
+    "react-dom": "^17.0.2",
+    "react-dropzone": "^11.3.4",
+    "react-icons": "^4.2.0",
+    "react-scripts": "^4.0.3",
+    "react-spring": "^8.0.0",
+    "scribbletune": "git://github.com/scribbletune/scribbletune.git#v5",
+    "soundfont-player": "^0.12.0",
+    "toasted-notes": "^3.2.0",
+    "tone": "^14.7.77",
+    "webmidi": "^2.5.2",
+    "zen-observable": "^0.8.15"
+  },
+  "scripts": {
+    "postinstall:debug": "echo postinstall:debug && npm run postinstall:debug-tonejs",
+    "postinstall:debug-tonejs": "echo postinstall:debug-tonejs && npm link tone && npm run webpack:override",
+    "postinstall:debug-scribbletune": "echo postinstall:debug-scribbletune && npm link scribbletune && npm run webpack:override",
+    "webpack:override": "echo webpack:override && cp node_modules=react-scripts=config=webpack.config.js.debug node_modules/react-scripts/config/webpack.config.js",
+    "lint": "eslint --ignore-path .gitignore ./",
+    "lint:fix": "eslint --ignore-path .gitignore ./ --fix",
+    "lint:css:fix": "stylelint --ignore-path .gitignore --fix \"**/*.css\"",
+    "lint:log-rules": "npx eslint --print-config sec/index.js > log.eslintrc.json",
+    "start": "npm run generate && react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "graphql:update-schema": "apollo client:download-schema schema.graphql",
+    "generate": "graphql-codegen --config codegen.yml",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
+  },
+  "eslintConfig": {
+    "extends": ".eslintrc.js"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "2.1.1",
+    "@graphql-codegen/fragment-matcher": "3.1.0",
+    "@graphql-codegen/introspection": "2.1.0",
+    "@playlyfe/gql": "^2.6.2",
+    "@storybook/addon-actions": "^6.3.7",
+    "@storybook/addon-essentials": "^6.3.7",
+    "@storybook/addon-links": "^6.3.7",
+    "@storybook/node-logger": "^6.3.7",
+    "@storybook/preset-create-react-app": "^3.2.0",
+    "@storybook/react": "^6.3.7",
+    "apollo": "^2.33.4",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-compat": "^3.13.0",
+    "eslint-plugin-import": "^2.24.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.4.1",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-react": "^7.24.0",
+    "prettier": "^2.3.2",
+    "raw-loader": "^4.0.2",
+    "source-map-loader": "^1.1.3",
+    "stylelint": "^13.13.1",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-sass-guidelines": "^8.0.0",
+    "stylelint-config-standard": "^22.0.0"
   }
 }

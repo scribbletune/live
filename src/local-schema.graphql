@@ -1,0 +1,60 @@
+  type JsError {
+     message: String
+     stack: String
+  }
+  type Clip {
+    # /**
+    # * A string or array of notes or chords names.
+    # *  - Default:  `[ 'C4' ]`
+    # *  - Example:  `'C4 D4 C4 D#4 C4 D4 C4 Bb3'`
+    # */
+    # notes?: string | (string | string[])[];
+    pattern: String!
+    clipStr: String
+    shuffle: Boolean
+    arpegiate: Boolean
+    subdiv: String
+    amp: Int
+    # /**
+    # * Add a “sizzle” (in a manner of speaking) applied to the levels/ volumes.
+    # *  - Default: `false`
+    # */
+    # sizzle?: boolean | SizzleStyle;
+    accent: String
+    accentLow: Int
+    sizzleReps: Int
+    # /**
+    # * A string or array of random notes or chords.
+    # *  - Default:  `null`
+    # *  - Example:  `'C4 D4 C4 D#4 C4 D4 C4 Bb3'`
+    # */
+    # randomNotes?: null | string | (string | string[])[];
+    dur: String
+    durations: [Float]
+    # offlineRendering: Boolean
+  }
+  type Channel {
+    idx: Int
+    name: String
+    volume: Float
+    activeClipIdx: Int
+    state: String
+    error: JsError
+    clips: [Clip!]
+  #   #     amp?          : number;
+  #   #     synth?        : any;
+  #   #     instrument?   : any;
+  #   #     sample?       : any;
+  #   #     buffer?       : any;
+  #   #     samples?      : any;
+  #   #     sampler?      : any;
+  #   #     player?       : any;
+  #   #     external?     : any;
+  #   #     effects?      : any | any[];
+  }
+  type Query {
+    isPlaying: Boolean
+    tempoBpm: Float
+    #channels: [Channel]
+    channels(idx: Int): Channel
+  }

@@ -1,0 +1,110 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "debug-start",
+      "type": "npm",
+      "script": "start",
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": {
+        "owner": "custom",
+        "pattern": {
+          "regexp": "^$"
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "Compiling...",
+          "endsPattern": "Compiled .*"
+        }
+      }
+    },
+    {
+      "label": "debug-stop",
+      "command": "echo ${input:terminate}",
+      "type": "shell"
+    },
+    {
+      "type": "npm",
+      "script": "lint",
+      "problemMatcher": {
+        "owner": "eslint",
+        "fileLocation": "absolute",
+        "pattern": [
+          {
+            "regexp": "^([^\\s].*)$",
+            "file": 1
+          },
+          {
+            "regexp": "^\\s+(\\d+):(\\d+)\\s+(error|warning|info)\\s+(.*)\\s\\s+(.*)$",
+            "line": 1,
+            "column": 2,
+            "severity": 3,
+            "message": 4,
+            "code": 5,
+            "loop": true
+          }
+        ]
+      },
+      "label": "npm: lint",
+      "detail": "lint check"
+    },
+    {
+      "type": "npm",
+      "script": "lint:fix",
+      "problemMatcher": [
+        "$eslint-stylish"
+      ],
+      "label": "npm: lint:fix",
+      "detail": "lint fix"
+    },
+    {
+      "type": "npm",
+      "script": "lint:css:fix",
+      "problemMatcher": {
+        "owner": "stylelint",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": [
+          {
+            "regexp": "^([^\\s].*)$",
+            "file": 1
+          },
+          {
+            "regexp": "^\\s+(\\d+):(\\d+)\\s+(✖)\\s+(.+)\\s(\\S+)\\s*(([\\n\\r]+\\s\\s\\s+(\\D.*))*)$",
+            "line": 1,
+            "column": 2,
+            "severity": 3,
+            "message": 4,
+            "code": 5,
+            "loop": true
+          }
+        ]
+      },
+      "label": "npm: lint:css:fix",
+      "detail": "style fix"
+    },
+    {
+      "type": "npm",
+      "label": "npm: storybook",
+      "script": "storybook",
+      "detail": "storybook",
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "terminate",
+      "type": "command",
+      "command": "workbench.action.tasks.terminate",
+      "args": "debug-start"
+    }
+  ]
+}

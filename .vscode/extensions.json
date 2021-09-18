@@ -1,0 +1,33 @@
+{
+  "recommendations": [
+    "burkeholland.simple-react-snippets",
+    "jawandarajbir.react-vscode-extension-pack",
+    // "coenraads.bracket-pair-colorizer-2",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "formulahendry.auto-close-tag",
+    "christian-kohler.npm-intellisense",
+    "christian-kohler.path-intellisense",
+    "eg2.vscode-npm-script",
+    "formulahendry.auto-rename-tag",
+    "gruntfuggly.todo-tree",
+    "sukumo28.wav-preview",
+    "angryobject.react-pure-to-class-vscode",
+    "donjayamanne.githistory",
+    "dsznajder.es7-react-js-snippets",
+    "eamodio.gitlens",
+    "editorconfig.editorconfig",
+    "hookyqr.beautify",
+    "mikestead.dotenv",
+    "pflannery.vscode-versionlens",
+    "wix.vscode-import-cost",
+    "vscode-icons-team.vscode-icons",
+    "syler.sass-indented",
+    "apollographql.vscode-apollo",
+    "kumar-harsh.graphql-for-vscode",
+    "pulkitgangwar.next-js-react-storybook-commands",
+    "joshbolduc.story-explorer",
+    "brendon1555.react-component-generator",
+    "mochisann.create-react-component-with-storybook-and-testfile"
+  ]
+}

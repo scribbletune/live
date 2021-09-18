@@ -1,0 +1,13 @@
+.numberspinner input[type='number'] {
+
+  /* For Firefox */
+  appearance: textfield;
+  text-align: center;
+}
+
+/* Webkit browsers like Safari and Chrome */
+.numberspinner input[type='number']::-webkit-inner-spin-button,
+.numberspinner input[type='number']::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}

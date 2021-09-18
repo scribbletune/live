@@ -1,8 +1,0 @@
-body {
-	background-color: black;
-	color: gray;
-}
-h1 { color: tomato; }
-h3 { color: white; }
-a { color: cyan; }
-a:hover { color: rgb(35, 73, 73); }

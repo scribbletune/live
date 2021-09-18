@@ -1,0 +1,9 @@
+overwrite: true
+schema: "src/local-schema.graphql"
+#documents: "src/**/*.graphql"
+generates:
+  src/schema-introspection.json:
+    plugins:
+      - introspection
+    config:
+      minify: false
