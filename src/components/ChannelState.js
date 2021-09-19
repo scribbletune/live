@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Col, Row, OverlayTrigger, Tooltip } from 'react-bootstrap';
-import Spinner from 'react-bootstrap/spinner';
+import Spinner from 'react-bootstrap/Spinner';
 import { TiWarning } from 'react-icons/all';
 
 const ChannelStateIcon = ({ state, error }) => {

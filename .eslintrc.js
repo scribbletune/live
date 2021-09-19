@@ -9,7 +9,6 @@ module.exports = {
   },
   extends: [
     'airbnb',
-    'plugin:prettier/recommended',
     'prettier',
     'plugin:react/recommended',
     'plugin:import/recommended',
@@ -18,6 +17,7 @@ module.exports = {
     // ? 'plugin:jsx-a11y/strict',
     'plugin:jsx-a11y/recommended',
     'plugin:promise/recommended',
+    'plugin:prettier/recommended',
   ],
   parser: 'babel-eslint',
   parserOptions: {
@@ -90,7 +90,7 @@ module.exports = {
         arrowParens: 'always',
         htmlWhitespaceSensitivity: 'strict',
         bracketSpacing: true,
-        jsxBracketSameLine: false,
+        // jsxBracketSameLine: false,
         proseWrap: 'always',
         semi: true,
         tabWidth: 2,
