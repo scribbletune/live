@@ -169,23 +169,26 @@ const defaultOptions = {
     errorPolicy: 'all',
   },
 };
+const apolloLinks = [
+  // Error handler
+  onError(({ graphQLErrors, networkError }) => {
+    if (graphQLErrors) {
+      graphQLErrors.forEach(({ message, locations, path }) =>
+        console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`)
+      );
+    }
+    if (networkError) {
+      console.log(`[Network error]: ${networkError}`);
+    }
+  }),
+];
+if (introspectionLink) {
+  apolloLinks.push(introspectionLink); // For debugging, forwards schema to Chrome Apollo Devtools extension
+}
 const client = new ApolloClient({
   // uri: process.env.REACT_APP_GRAPHQL_ENDPOINT,
   cache: stateCache,
-  link: ApolloLink.from([
-    // Error handler
-    onError(({ graphQLErrors, networkError }) => {
-      if (graphQLErrors) {
-        graphQLErrors.forEach(({ message, locations, path }) =>
-          console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`)
-        );
-      }
-      if (networkError) {
-        console.log(`[Network error]: ${networkError}`);
-      }
-    }),
-    introspectionLink, // For debugging, forwards schema to Chrome Apollo Devtools extension
-  ]),
+  link: ApolloLink.from(apolloLinks),
   // typeDefs, // typeDefs don't seem to make a difference. Schema file in apollo.config.js and introspectionLink do.
   defaultOptions,
   resolvers,
