@@ -2,11 +2,11 @@
   const getTrack = (providers) => {
     // Libraries provided by the app:
     const {
-      scribbletune, // { arp, scale, }
+      // scribbletune, // { arp, scale, }
       sounds, // { samplers, getToneMonoSynth, }
-      PlayOnJZZ,
-      PlayOnSoundfontPlayer,
-      PlayOnWebMidi,
+      // PlayOnJZZ,
+      // PlayOnSoundfontPlayer,
+      // PlayOnWebMidi,
     } = providers || {};
 
     const track = {

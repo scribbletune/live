@@ -4,9 +4,9 @@
     const {
       scribbletune, // { arp, scale, }
       sounds, // { samplers, getToneMonoSynth, }
-      PlayOnJZZ,
-      PlayOnSoundfontPlayer,
-      PlayOnWebMidi,
+      // PlayOnJZZ,
+      // PlayOnSoundfontPlayer,
+      // PlayOnWebMidi,
     } = providers || {};
 
     const track = {
