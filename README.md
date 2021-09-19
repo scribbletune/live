@@ -1,5 +1,7 @@
 # Live Scribble
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8d6b68e4-2981-470a-98fd-dda4322e8b10/deploy-status)](https://app.netlify.com/sites/scribbletune-live-dev/deploys)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 Technologies used:

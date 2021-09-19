@@ -1,0 +1,19 @@
+# Setup File for Netlify.com
+
+# Build settings
+[build]
+publish = "build"
+command = "npm run build:netlify"
+
+# Example variables
+[build.environment]
+#  YARN_VERSION = "1.9.4"
+#  YARN_FLAGS = "--no-ignore-optional"
+# NODE_VERSION = ""
+# NODE_OPTIONS = "--max-old-space-size=4096"
+
+# This a typical rule for Single Page Applications
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
