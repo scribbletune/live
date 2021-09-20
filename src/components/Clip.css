@@ -4,46 +4,32 @@ div.slide-right-drawer {
   overflow: hidden;
   padding: 0;
 }
+
 div.slide-right-drawer button {
-  border: unset;
   float: right;
-  margin-left: auto;
-  text-align: right;
+}
+div.slide-right-drawer.btn button {
+  border: unset;
 }
 
 div.slide-right-drawer.slide-right-enter {
   max-width: 0;
-  /* opacity: 0; */
-  /* width: 0; */
 }
 
 div.slide-right-drawer.slide-right-enter-active {
   max-width: 40px;
-  /* opacity: 1; */
   transition: max-width 500ms ease-out, opacity 300ms ease-out;
-  /* width: auto; */
 }
-
-/* div.slide-right-drawer.slide-right-enter-done {
-  max-width: 40px;
-  overflow: hidden;
-  /* width: auto; * /
-} */
 
 div.slide-right-drawer.slide-right-exit {
   max-width: 40px;
-  /* opacity: 1; */
 }
 
 div.slide-right-drawer.slide-right-exit-active {
   max-width: 0;
-  /* opacity: 0; */
   transition: max-width 500ms ease-out, opacity 300ms ease-out;
-  /* width: 0; */
 }
 
 div.slide-right-drawer.slide-right-exit-done {
   max-width: none;
-  overflow: hidden;
-  /* width: auto; */
 }
