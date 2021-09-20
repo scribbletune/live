@@ -17,6 +17,7 @@
     "react-icons": "^4.2.0",
     "react-scripts": "^4.0.3",
     "react-spring": "^8.0.0",
+    "react-transition-group": "^4.4.2",
     "scribbletune": "https://github.com/scribbletune/scribbletune.git#v5",
     "soundfont-player": "^0.12.0",
     "toasted-notes": "^3.2.0",

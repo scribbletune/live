@@ -1,5 +1,7 @@
 import React, { useCallback } from 'react';
 import { ButtonGroup, Button } from 'react-bootstrap';
+import { CSSTransition } from 'react-transition-group';
+import './Clip.css';
 
 // Sub-Component
 const ClipDisabledButton = ({ onContextMenu }) => (
@@ -57,7 +59,7 @@ const ClipButton = ({ clip, playClip, stopClip, onContextMenu }) => {
 };
 
 // Sub-Component
-const GearsButton = ({ clip, setShowModal }) => {
+const GearsButton = ({ clip, setShowModal, btnVariant }) => {
   // Pattern: "avoid binding arrow functions in render"
   const onShowModal = useCallback(
     () => {
@@ -66,7 +68,7 @@ const GearsButton = ({ clip, setShowModal }) => {
     [setShowModal, clip] // Array of dependencies for which the memoization should update
   );
   return (
-    <Button variant={clip.pattern || clip.clipStr ? 'secondary' : 'outline-secondary'} onClick={onShowModal}>
+    <Button variant={btnVariant} onClick={onShowModal}>
       ⚙
     </Button>
   );
@@ -95,17 +97,17 @@ function Clip({ clip, showGears, stopClip, playClip, setShowModal }) {
     },
     [setShowModal, clip] // Array of dependencies for which the memoization should update
   );
-
-  return showGears ? (
+  const btnVariant = clip.pattern || clip.clipStr ? 'secondary' : 'outline-secondary';
+  return (
     <div className="clip">
       <ButtonGroup>
         <ClipButton clip={clip} playClip={playClip} stopClip={stopClip} onContextMenu={handleRightClick} />
-        <GearsButton clip={clip} setShowModal={setShowModal} />
+        <CSSTransition in={showGears} timeout={500} classNames="slide-right" unmountOnExit>
+          <div className={`slide-right-drawer btn btn-${btnVariant}`}>
+            <GearsButton clip={clip} setShowModal={setShowModal} btnVariant={btnVariant} />
+          </div>
+        </CSSTransition>
       </ButtonGroup>
-    </div>
-  ) : (
-    <div className="clip">
-      <ClipButton clip={clip} playClip={playClip} stopClip={stopClip} onContextMenu={handleRightClick} />
     </div>
   );
 }
