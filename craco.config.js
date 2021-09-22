@@ -17,7 +17,7 @@ module.exports = {
         // which react currently can't work with.
         {
           test: /\.(js|mjs|jsx)$/,
-          include: paths.appPath.split('\\').slice(0, -1).join('\\'), // For storybook to continue working, must have 'include' property.
+          include: paths.appPath.split('\\').slice(0, -1).join('\\') || paths.appPath.split('/').slice(0, -1).join('/'), // For storybook to continue working, must have 'include' property.
           enforce: 'pre',
           use: [
             {
@@ -50,7 +50,7 @@ module.exports = {
         }
       );
 
-      console.log('DEBUG: craco.config.js: webpackConfig=%o', webpackConfig);
+      console.log('DEBUG: env=%o paths=%o craco.config.js: webpackConfig=%o', env, paths, webpackConfig);
       return webpackConfig;
     },
   },
