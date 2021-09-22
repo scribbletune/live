@@ -16,7 +16,8 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import toaster from 'toasted-notes';
 
 import * as Tone from 'tone';
-import { Session, arp, scale } from 'scribbletune/browser';
+// import { Session, arp, scale } from 'scribbletune/browser'; // Webpack has difficulty loading from git repo
+import browser from 'scribbletune/browser';
 
 import Dropzone from 'react-dropzone';
 // import { ExecutionResult } from 'graphql';
@@ -51,6 +52,8 @@ import PlayOnWebMidi from './PlayOnWebMidi';
 
 // Gather loadable tracks on open.
 import allTrackFiles from './tracks';
+
+const { Session, arp, scale } = browser;
 
 const appVersion = 'v0.0.1'; // TODO: extract from package.json (using Webpack plugins?)
 const appRelease = 'build-2021-0824';
@@ -454,7 +457,7 @@ const loadData = (file, name, data, text, setCurrentFileFnc) => {
 loadData(null, allTrackFiles[0].name, allTrackFiles[0].data, allTrackFiles[0].text, setCurrentFile);
 // TODO: Add UI menu to open any of the examples.
 
-const enableSidebar = false; // WIP
+const enableSidebar = true; // WIP
 const enableMenubar = true; // WIP
 
 // React hook for scribbletune transport start/stop // TODO: remove
