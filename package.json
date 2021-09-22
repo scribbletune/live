@@ -33,6 +33,7 @@
     "build:gitrepos": "npm install && cd node_modules/scribbletune && npm install && npm run build:browser && cd ../..",
     "build:netlify": "npm run build:gitrepos && npm run build",
     "build:netlify2": "npm run build",
+    "build:storybook": "build-storybook -s public",
     "lint": "eslint --ignore-path .gitignore ./",
     "lint:fix": "eslint --ignore-path .gitignore ./ --fix",
     "lint:css:fix": "stylelint --ignore-path .gitignore --fix \"**/*.css\"",
@@ -43,8 +44,7 @@
     "eject": "craco eject",
     "graphql:update-schema": "apollo client:download-schema schema.graphql",
     "generate": "graphql-codegen --config codegen.yml",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "storybook": "start-storybook -p 6006 -s public"
   },
   "eslintConfig": {
     "extends": ".eslintrc.js"
