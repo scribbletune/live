@@ -15,7 +15,6 @@ import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 import * as Tone from 'tone';
 // import { Session, arp, scale } from 'scribbletune/browser'; // Webpack has difficulty loading from git repo
@@ -217,7 +216,7 @@ const getToasterType = (icon) => {
       return toast.TYPE.DEFAULT;
   }
 };
-const newToast = (icon, title, text, details, duration = 30000) => {
+const newToast = (icon, title, text, details, duration = 3000) => {
   toast(
     <>
       <h5 as="div" className="text-title">

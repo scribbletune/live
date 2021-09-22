@@ -132,7 +132,7 @@ input[type='range'][orient='vertical'] {
 
 .Toastify .Toastify__toast-container {
   /* Show toasts under NavBar */
-  padding-top: 75px !important;
+  padding-top: 75px;
 }
 
 .Toastify .Toastify__toast-icon {
