@@ -130,65 +130,16 @@ input[type='range'][orient='vertical'] {
 
 /* Style toaster like Darkly theme from <https://bootswatch.com/darkly/> */
 
-.Toaster__manager-top {
-  /* Show toasts under NavBar*/
-  padding-top: 75px;
+.Toastify .Toastify__toast-container {
+  /* Show toasts under NavBar */
+  padding-top: 75px !important;
 }
 
-.toast {
-  width: 100%;
+.Toastify .Toastify__toast-icon {
+  /* Move the icon to the top */
+  margin-bottom: auto;
 }
 
-.Toaster__alert {
-  background-color: #444;
-  /* border-radius: ; */
-  box-shadow: none;
-  color: #fff; /* var(--bs-body-color); */
-  display: flex;
-  max-width: 100%;
-  overflow: hidden;
-  padding: 0;
-  position: relative;
-}
-
-.Toaster__alert .toast-header {
-  padding-right: 2.5em;
-}
-
-.Toaster__alert_text {
-  /* Style like Bootstrap toaster close button */
-  color: #fff; /* var(--bs-body-color); */
-}
-
-.Toaster__alert_close {
-  /* Style like Bootstrap toaster close button */
-  appearance: none;
-  background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
-  border: 0;
-  border-radius: 0.25rem;
-  box-sizing: content-box;
-  cursor: pointer;
-  font-size: 0.875rem;
-  font-weight: 400; /* var(--bs-body-font-weight); */
-  height: 1em;
-  line-height: 1;
-  opacity: 0.4;
-  /* outline: none; */
-  padding: 0.25em;
-  position: absolute;
-  right: 8px;
-  top: 8px;
-  width: 1em;
-}
-
-.Toaster__alert_close span {
-  /* Style like Bootstrap toaster close button, hide 'x', use img */
-  display: none;
-}
-
-.Toaster__alert .btn-close {
-  display: none; /* Hide Bootstrap toaster close button */
-}
 
 .channel-state,
 .channel-state div {

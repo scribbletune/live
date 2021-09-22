@@ -5,15 +5,17 @@ import { ApolloClient, ApolloProvider, InMemoryCache, useQuery, useMutation } fr
 import { ApolloLink } from '@apollo/client/core';
 import { Query } from '@apollo/client/react/components';
 import { onError } from '@apollo/client/link/error';
-import { BiCheckCircle, BiInfoCircle, BiError, ImFileMusic, FiSave } from 'react-icons/all';
+import { ImFileMusic, FiSave } from 'react-icons/all';
 import React, { useState } from 'react';
-import { Container, Button, Row, Col, Modal, Toast } from 'react-bootstrap';
+import { Container, Button, Row, Col, Modal } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import toaster from 'toasted-notes';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import * as Tone from 'tone';
 // import { Session, arp, scale } from 'scribbletune/browser'; // Webpack has difficulty loading from git repo
@@ -200,32 +202,34 @@ const client = new ApolloClient({
 // console.log('DEBUG: process.env.NODE_ENV=%o', process.env.NODE_ENV);
 // console.log('DEBUG: window.__APOLLO_CLIENT__=%o', window.__APOLLO_CLIENT__);
 
-const getIcon = (icon) => {
+const getToasterType = (icon) => {
   switch (icon) {
     case 'error':
-      return <BiError size="1.25rem" className="me-2" />;
+      return toast.TYPE.ERROR; // BiError
     case 'success':
-      return <BiCheckCircle size="1.25rem" className="me-2" />;
+      return toast.TYPE.SUCCESS; // BiCheckCircle
     case 'info':
-      return <BiInfoCircle size="1.25rem" className="me-2" />;
+      return toast.TYPE.INFO; // BiInfoCircle
+    case 'warn':
+    case 'warning':
+      return toast.TYPE.WARNING;
     default:
-      return null;
+      return toast.TYPE.DEFAULT;
   }
 };
-const toast = (icon, title, text, details, duration = 3000) => {
-  toaster.notify(
-    <Toast>
-      <Toast.Header>
-        {getIcon(icon)}
+const newToast = (icon, title, text, details, duration = 30000) => {
+  toast(
+    <>
+      <h5 as="div" className="text-title">
         {title}
-      </Toast.Header>
-      <Toast.Body>
-        {text}
-        <div className="text-muted">{details}</div>
-      </Toast.Body>
-    </Toast>,
+      </h5>
+      {text}
+      <div className="text-muted">{details}</div>
+    </>,
     {
-      duration,
+      type: getToasterType(icon),
+      autoClose: duration,
+      theme: 'dark',
     }
   );
 };
@@ -429,7 +433,7 @@ const openTrack = (file, fileName, fileText, fileData, setCurrentFileFnc, cache)
 const loadData = (file, name, data, text, setCurrentFileFnc) => {
   if (!data || !data.getTrack) {
     // console.log('Failed loading file "%o", no valid data=%o', fileName, fileData);
-    toast(
+    newToast(
       'error',
       'Error',
       `Failed loading file "${name}"`,
@@ -443,13 +447,13 @@ const loadData = (file, name, data, text, setCurrentFileFnc) => {
     data.track = data.getTrack(trackServiceProviders);
   } catch (e) {
     // console.log('Failed loading file "%o", execution error=%o', fileName, e);
-    toast('error', 'Error', `Failed getting data from file "${name}"`, `Error ${e.message}`);
+    newToast('error', 'Error', `Failed getting data from file "${name}"`, `Error ${e.message}`);
     return;
   }
   // 4. Load track data into session
   // console.log('Executed file "%o", track=%o', fileName, fileData.track);
   openTrack(file, name, text, data.track, setCurrentFileFnc, stateCache);
-  toast('success', 'Success', `Loaded file "${name}"`, `Track data loaded Ok.`);
+  newToast('success', 'Success', `Loaded file "${name}"`, `Track data loaded Ok.`);
 };
 
 // Load embedded example file
@@ -537,14 +541,14 @@ function App() {
       loadScript(filePath, file.name, file, 'track', fileText, loadData);
     };
     reader.onerror = () => {
-      toast('error', 'Error', `Failed reading file "${file.name}"`, `Error ${reader.error}`);
+      newToast('error', 'Error', `Failed reading file "${file.name}"`, `Error ${reader.error}`);
       // console.log(reader.error);
     };
     reader.readAsText(file); // Initiates file reading
   };
   const onFileOpenReject = (rejectedFiles) => {
     // console.log('onFileOpenReject() rejectedFiles=%o', rejectedFiles);
-    toast(
+    newToast(
       'error',
       'Error',
       `Cannot open file(s) "${rejectedFiles.map((f) => f.file.name).join('", "')}"`,
@@ -760,6 +764,7 @@ function App() {
               </Row>
 
               <ClipEditorModal />
+              <ToastContainer hideProgressBar="true" />
             </Container>
           );
         }}
