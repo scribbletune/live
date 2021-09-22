@@ -50,7 +50,7 @@ module.exports = {
         }
       );
 
-      // console.log('DEBUG: craco.config.js: webpackConfig=%o', webpackConfig);
+      console.log('DEBUG: craco.config.js: webpackConfig=%o', webpackConfig);
       return webpackConfig;
     },
   },
