@@ -2,8 +2,8 @@
 
 # Build settings
 [build]
-publish = "build"
-command = "CI= npm run build:netlify"
+#publish = "build"
+#command = "CI= npm run build:netlify"
 
 # Example variables
 [build.environment]
