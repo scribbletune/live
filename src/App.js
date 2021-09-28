@@ -50,10 +50,10 @@ import allTrackFiles from './tracks';
 const { Session, arp, scale } = browser;
 
 const appInfo = {
-  name = 'Live Scribble',
-  version = 'v0.0.1', // TODO: extract from package.json (using Webpack plugins?)
-  release = 'build-2021-0824',
-  copyright = '(c) 2021',
+  name: 'Live Scribble',
+  version: 'v0.0.1', // TODO: extract from package.json (using Webpack plugins?)
+  release: 'build-2021-0824',
+  copyright: '(c) 2021',
 };
 
 const connectToDevTools = process.env.NODE_ENV !== 'production';
