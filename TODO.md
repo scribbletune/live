@@ -8,35 +8,50 @@ In addition to the to-do's sprinkled throughout the code, this file contains kin
 
 It is also a thinking-out-loud place, to capture ideas for future features.
 
-### General
+### General App
 
-1. TODO Host App on Netlify - need to use github branch in package.json depenencies
-1. TODO Host Storybook on Netlify
-1. TODO Theme changer, better framework (with useful components like number input with spinner), see promising <https://www.primefaces.org/primereact/showcase/#/inputnumber>
+1. TODO Theme changer
+1. TODO Better components framework (with useful components like number input with spinner), see promising <https://www.primefaces.org/primereact/showcase/#/inputnumber>
+1. TODO About page
 
-### Baseline
+### Baseline Features
 
 (see duplicaes in the code)
 
-1. TODO Performance improvements, remove unnecessary renders and updates,
+1. TODO Performance improvements, remove unnecessary renders and updates (e.g. fix volume sliding throws delays in, fix Clip unnecessary re-renders)
  @see <https://reactjs.org/docs/hooks-faq.html#how-to-avoid-passing-callbacks-down> revisit useCallback()
 
-1. TODO Organize components: separate toolbar, left drawer.
+1. TODO Aligned Clips
 1. TODO Channel mute
 1. TODO Master volume + mute
 1. TODO Metronome
 1. TODO Clip names
 1. TODO Clip colors
 1. TODO Clip 'ditto', drag'n'drop
-1. TODO Track record, rewind, replay, export to file (Tone.Transport keeps recording of events, maybe on notes level, need something like clip-level?)
+1. TODO Recording play performance - Track record, rewind, replay buttons, export to file (Tone.Transport keeps recording of events, maybe on notes level, need something like clip-level?)
 1. TODO Clip record (from MIDI in?) -> parse into primitives (notes, pattern)
+1. TODO Move sounds / sample(r)s to CDN, load custom sounds (links in track file - it should be possible already)
+1. TODO Allow to combine channels into one instrument (e.g. percussion)
+1. TODO Recording clips from e.g. MIDI
+1. TODO Repo /search / marketplace of track files
 
-### Roadmap to the Editor
+### Roadmap to the Editors
 
-1. TODO Parse raw code of loadable track file, and annotate track data, e.g. `pattern` contains result, `patternGen` would contain code snipet that created that pattern. Same for notes, chords, etc.
+All editors should handle both loaded object and file's source code representation (e.g. preserve any functions, comments) and keep them in sync. Open/Save (without edits) should produce same exact file.
+
+#### Overall Goals
+
+* Clip Editor
+* Channel editor (instrument selector),
+* Add/remove channel, add/remove clip
+* Drag&drop clips (move/copy)
+* Lead sheet editor
+* Raw track code editor
+
+1. TODO Parse raw code of loadable track file, and annotate track data, e.g. `pattern` contains result, `patternGen` would contain code snipet that created that pattern. Same for notes, chords, etc. - `xxxGen`
 1. TODO Ability to 'apply' or 're-generate', i.e. run all generators to re-calculate pattern, notes, etc.
 1. TODO Reverse generator? E.g. take notes or chords sequence and map back to the scale of the key signature. Given scale 'C major', chords 'C G Am F' -> produce code `notes = notes(chords(keySignature, 'I V IV vi'))` or such.
-1. TODO Continue impoving ClipEditor.js toward a functional level. Implementation should use `xxxGen` when present.
+1. TODO Continue improving ClipEditor.js toward a functional level. Implementation should use `xxxGen` when present.
 
 ### Roadmap to the TTM - Lead Sheet
 
