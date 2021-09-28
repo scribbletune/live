@@ -83,51 +83,6 @@ input[type='range'][orient='vertical'] {
   background: #808080;
 }
 
-.offcanvas {
-  margin-top: 0.75rem;
-}
-
-.toolbar.navbar {
-  padding-bottom: 0.5rem;
-  padding-top: 0.5rem;
-}
-
-.toolbar .navbar-text {
-  margin-left: 0.75rem;
-  margin-right: 0.75rem;
-  padding-bottom: 0;
-  padding-top: 0;
-}
-
-.toolbar .btn-sidebar-open,
-.toolbar .btn-sidebar-close {
-  margin-left: 0.5rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-}
-
-.toolbar .navbar-brand img,
-.offcanvas .navbar-brand img {
-  /* width: 32px; */
-  height: 32px;
-  margin-left: 0.5rem;
-  margin-right: 0.75rem;
-  vertical-align: middle;
-}
-
-.toolbar .form-switch .form-check-input:checked {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.25%29'/%3e%3c/svg%3e");
-}
-
-.toolbar .form-check-input:checked {
-  background-color: #fff;
-  border-color: #fff;
-}
-
-.toolbar .form-check-input {
-  background-color: rgba(255, 255, 255, 0.6);
-}
-
 /* Style toaster like Darkly theme from <https://bootswatch.com/darkly/> */
 
 .Toastify .Toastify__toast-container {

@@ -5,22 +5,16 @@ import { ApolloClient, ApolloProvider, InMemoryCache, useQuery, useMutation } fr
 import { ApolloLink } from '@apollo/client/core';
 import { Query } from '@apollo/client/react/components';
 import { onError } from '@apollo/client/link/error';
-import { ImFileMusic, FiSave } from 'react-icons/all';
 import React, { useState } from 'react';
-import { Container, Button, Row, Col, Modal } from 'react-bootstrap';
-import Form from 'react-bootstrap/Form';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import Offcanvas from 'react-bootstrap/Offcanvas';
+import { Container, Row, Col, Modal } from 'react-bootstrap';
 
 import { ToastContainer, toast } from 'react-toastify';
+import ReactTooltip from 'react-tooltip'; // Displays tooltips for "data-tip" props
 
 import * as Tone from 'tone';
 // import { Session, arp, scale } from 'scribbletune/browser'; // Webpack has difficulty loading from git repo
 import browser from 'scribbletune/browser';
 
-import Dropzone from 'react-dropzone';
 // import { ExecutionResult } from 'graphql';
 import Observable from 'zen-observable';
 import { saveAs } from 'file-saver';
@@ -38,11 +32,10 @@ import {
 } from './gql';
 import introspectionResult from './schema-introspection.json';
 
-import NumberWithSpinners from './components/NumberWithSpinners';
-import Transport from './components/Transport';
 import Channel from './components/Channel';
 import Master from './components/Master';
 import ClipEditor from './components/ClipEditor';
+import Toolbar from './components/Toolbar';
 
 import getResolvers from './resolvers';
 
@@ -56,9 +49,12 @@ import allTrackFiles from './tracks';
 
 const { Session, arp, scale } = browser;
 
-const appVersion = 'v0.0.1'; // TODO: extract from package.json (using Webpack plugins?)
-const appRelease = 'build-2021-0824';
-const appCopyright = '(c) 2021';
+const appInfo = {
+  name = 'Live Scribble',
+  version = 'v0.0.1', // TODO: extract from package.json (using Webpack plugins?)
+  release = 'build-2021-0824',
+  copyright = '(c) 2021',
+};
 
 const connectToDevTools = process.env.NODE_ENV !== 'production';
 
@@ -477,6 +473,13 @@ function useScribbletuneIsPlaying(store) {
   return data.isPlaying;
 }
 
+const sidebarMenu = [
+  { id: 1, title: 'Uno' },
+  { id: 2, title: 'Dos' },
+  { id: 3, title: 'Tres' },
+  { id: 4, title: 'About' },
+];
+
 function App() {
   // console.log('REDRAW: App');
   const [setVolume] = useMutation(SET_VOLUME, { client });
@@ -488,7 +491,6 @@ function App() {
 
   // Some local state variables (not using context or Apollo)
   const [currentFileIsDirty, setCurrentFileIsDirty] = useState(currentFileState.isDirty);
-  const [showSidebar, setShowSidebar] = useState(false);
   const [showGears, setShowGears] = useState(false);
   const [showModal, setShowModal] = useState({ show: false, clip: {} });
   const [logNotes, setLogNotes] = useState(globalLogNotes);
@@ -496,17 +498,20 @@ function App() {
   // Experiment: Control scribbletune here instead of in resolvers.js
   useScribbletuneIsPlaying(client);
 
-  const onSidebarClose = () => setShowSidebar(false);
-  const onSidebarOpen = () => setShowSidebar(true);
-  const handleShowGearsChangeEvent = () => {
-    setShowGears(!showGears);
-  };
   const handleLogNotesChangeEvent = () => {
     setLogNotes(!logNotes);
     globalLogNotes = !logNotes;
   };
   const handleBpmValueChangeEvent = (value) => {
     setTransportTempo({ variables: { tempoBpm: +value } });
+  };
+
+  const onSidebarMenu = (id) => {
+    console.log('DEBUG: Sidebar.Item [CLICK] id=%o', id);
+  };
+
+  const onMenubarMenu = (id) => {
+    console.log('DEBUG: Menubar.Item [CLICK] id=%o', id);
   };
 
   const loadScript = (urlOrFilePath, fileName, file, sectionName, fileText, onLoad) => {
@@ -605,145 +610,27 @@ function App() {
             <Container fluid>
               <Row md={12} className="">
                 <Col md={12}>
-                  <Navbar bg="primary" variant="dark" className="toolbar">
-                    {enableSidebar && (
-                      <>
-                        <Offcanvas show={showSidebar} onHide={onSidebarClose}>
-                          <Container fluid>
-                            <Row md={12} className="mb-0">
-                              <Col md={12}>
-                                <Navbar bg="primary" variant="dark" className="toolbar">
-                                  <Button onClick={onSidebarClose} className="navbar-toggler-custom btn-sidebar-close">
-                                    <span className="navbar-toggler-icon" />
-                                  </Button>
-                                  <Navbar.Brand href="#home">
-                                    <img src="logo192.png" className="d-inline-block" alt="Live logo" />
-                                    <span>Live Scribble</span>
-                                  </Navbar.Brand>
-                                  <Navbar.Text>{appVersion}</Navbar.Text>
-                                </Navbar>
-                              </Col>
-                            </Row>
-                            <Row>
-                              <Col className="me-1">
-                                <p className="text-start fst-italic text-muted">
-                                  <small>{appCopyright}</small>
-                                </p>
-                              </Col>
-                              <Col className="me-1">
-                                <p className="text-end fst-italic text-muted">
-                                  <small>{appRelease}</small>
-                                </p>
-                              </Col>
-                            </Row>
-                          </Container>
-                          <Offcanvas.Body>
-                            <ListGroup>
-                              <ListGroup.Item>Uno</ListGroup.Item>
-                              <ListGroup.Item>Dos</ListGroup.Item>
-                              <ListGroup.Item>Tres</ListGroup.Item>
-                              <ListGroup.Item>About</ListGroup.Item>
-                            </ListGroup>
-                          </Offcanvas.Body>
-                        </Offcanvas>
-                        <Button onClick={onSidebarOpen} className="navbar-toggler-custom btn-sidebar-open">
-                          <span className="navbar-toggler-icon" />
-                        </Button>
-                      </>
-                    )}
-
-                    <Navbar.Brand href="#home">
-                      <img src="logo192.png" className="d-inline-block" alt="Live logo" />
-                      <span>Live Scribble</span>
-                    </Navbar.Brand>
-
-                    {enableMenubar && (
-                      <>
-                        <Nav className="me-auto">
-                          <Nav.Link href="#home">Home</Nav.Link>
-                          <Nav.Link href="#features">Features</Nav.Link>
-                        </Nav>
-                      </>
-                    )}
-
-                    <Navbar.Text>
-                      <Form>
-                        <Form.Switch
-                          onChange={handleShowGearsChangeEvent}
-                          id="custom-switch"
-                          label="⚙"
-                          checked={showGears}
-                        />
-                        <Form.Switch
-                          onChange={handleLogNotesChangeEvent}
-                          id="custom-switch"
-                          label="log"
-                          checked={logNotes}
-                        />
-                      </Form>
-                    </Navbar.Text>
-
-                    <Navbar.Collapse className="justify-content-end">
-                      <Nav className="file">
-                        <Dropzone
-                          onDropRejected={(rejectedFiles) => onFileOpenReject(rejectedFiles)}
-                          onDropAccepted={(acceptedFiles) => onFileOpen(acceptedFiles)}
-                          accept={
-                            [
-                              'text/javascript',
-                              'application/javascript',
-                            ] /* see https://react-dropzone.js.org/#section-components */
-                          }
-                          maxFiles={1}
-                        >
-                          {({ getRootProps, getInputProps, isDragActive }) => (
-                            <div {...getRootProps()}>
-                              <Nav.Link className="file-name">
-                                <input {...getInputProps()} />
-
-                                {
-                                  // TODO: untangle
-                                  // eslint-disable-next-line no-nested-ternary
-                                  isDragActive ? (
-                                    '> Drop File Here <'
-                                  ) : currentFileState.name ? (
-                                    <>
-                                      <ImFileMusic size="1.25rem" /> {currentFileState.name}
-                                    </>
-                                  ) : (
-                                    'Open File'
-                                  )
-                                }
-                              </Nav.Link>
-                            </div>
-                          )}
-                        </Dropzone>
-                        {currentFileIsDirty && (
-                          <Nav.Link className="file-dirty" onClick={handleFileSave}>
-                            <FiSave size="1.25rem" /> Save
-                          </Nav.Link>
-                        )}
-                      </Nav>
-
-                      <Navbar.Text className="field-bpm">
-                        <Form>
-                          <NumberWithSpinners
-                            value={tempoBpm}
-                            setValue={handleBpmValueChangeEvent}
-                            units="bpm"
-                            controlId="bpm"
-                            repeatingBtnSlowTimeMs="200"
-                            repeatingBtnFastTimeMs="100"
-                            repeatingBtnFastDelayMs="2000"
-                          />
-                        </Form>
-                      </Navbar.Text>
-
-                      <Navbar.Text className="transport">
-                        <Transport isPlaying={isPlaying} startStopTrack={startStopTrack} />
-                      </Navbar.Text>
-                    </Navbar.Collapse>
-                  </Navbar>
+                  <Toolbar
+                    enableSidebar={enableSidebar}
+                    onSidebarMenu={onSidebarMenu}
+                    sidebarMenu={sidebarMenu}
+                    enableMenubar={enableMenubar}
+                    onMenubarMenu={onMenubarMenu}
+                    showGears={showGears}
+                    setShowGears={setShowGears}
+                    logNotes={logNotes}
+                    setLogNotes={handleLogNotesChangeEvent}
+                    tempoBpm={tempoBpm}
+                    handleBpmValueChangeEvent={handleBpmValueChangeEvent}
+                    isPlaying={isPlaying}
+                    startStopTrack={startStopTrack}
+                    currentFileIsDirty={currentFileIsDirty}
+                    onFileOpenReject={onFileOpenReject}
+                    onFileOpen={onFileOpen}
+                    currentFileState={currentFileState}
+                    handleFileSave={handleFileSave}
+                    appInfo={appInfo}
+                  />
                 </Col>
               </Row>
               <Row>
@@ -764,6 +651,7 @@ function App() {
 
               <ClipEditorModal />
               <ToastContainer hideProgressBar="true" />
+              <ReactTooltip />
             </Container>
           );
         }}
