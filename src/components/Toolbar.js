@@ -9,6 +9,8 @@ import Navbar from 'react-bootstrap/Navbar';
 
 import Dropzone from 'react-dropzone';
 
+import { ReactComponent as AppLogo } from '../logo/logo-live.svg';
+// import { ReactComponent as AppLogo } from '../logo/logo-only.svg';
 import './Toolbar.css';
 
 import NumberWithSpinners from './NumberWithSpinners';
@@ -54,7 +56,7 @@ function Toolbar({
       )}
 
       <Navbar.Brand href="#home">
-        <img src="logo192.png" className="d-inline-block" alt="Live logo" />
+        <AppLogo className="d-inline-block" aria-labelledby="Logo" alt="Live logo" fill="#fff" />
         <span>{appInfo.name}</span>
       </Navbar.Brand>
 
