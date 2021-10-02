@@ -15,7 +15,7 @@ const RowPlayButton = ({ idx, playRow }) => {
   );
 
   return (
-    <div key={idx} className="clip">
+    <div className="clip">
       <Button variant="outline-dark" onClick={onClick}>
         {' '}
         &#9658;
@@ -30,7 +30,7 @@ function Master({ count, playRow }) {
   return (
     <>
       <Col>
-        {[...jsxLoop(count, (idx) => <RowPlayButton idx={idx} playRow={playRow} />)]}
+        {[...jsxLoop(count, (idx) => <RowPlayButton key={idx} idx={idx} playRow={playRow} />)]}
         <div className="volume-slider" />
         <h6 className="text-center">MASTER</h6>
       </Col>
