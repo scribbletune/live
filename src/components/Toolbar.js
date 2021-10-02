@@ -37,6 +37,10 @@ function Toolbar({
   handleFileSave,
   appInfo,
 }) {
+  const handleShowGearsChangeEvent = () => {
+    setShowGears(!showGears);
+  };
+
   return (
     <Navbar bg="primary" variant="dark" className="toolbar">
       {enableSidebar && (
@@ -65,7 +69,7 @@ function Toolbar({
 
       <Navbar.Text>
         <Form>
-          <Form.Switch onChange={setShowGears} id="custom-switch" label="⚙" checked={showGears} />
+          <Form.Switch onChange={handleShowGearsChangeEvent} id="custom-switch1" label="⚙" checked={showGears} />
           <Form.Switch
             onChange={setLogNotes}
             id="custom-switch"
