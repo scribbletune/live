@@ -114,27 +114,51 @@ const introspectionLink =
 
 const mutationObservers = {
   setChannelVolume: (channelIdx, volume) => {
-    currentFileTrackSession?.channels[channelIdx]?.setVolume(volume);
+    try {
+      currentFileTrackSession?.channels[channelIdx]?.setVolume(volume);
+    } catch (e) {
+      console.error(e);
+    }
   },
 
   startChannelClip: (channelIdx, clipIdx) => {
-    currentFileTrackSession?.channels[channelIdx]?.startClip(clipIdx);
+    try {
+      currentFileTrackSession?.channels[channelIdx]?.startClip(clipIdx);
+    } catch (e) {
+      console.error(e);
+    }
   },
 
   stopChannelClip: (channelIdx, clipIdx) => {
-    currentFileTrackSession?.channels[channelIdx]?.stopClip(clipIdx);
+    try {
+      currentFileTrackSession?.channels[channelIdx]?.stopClip(clipIdx);
+    } catch (e) {
+      console.error(e);
+    }
   },
 
   setTransportTempo: (bpmValue) => {
-    currentFileTrackSession?.setTransportTempo(bpmValue);
+    try {
+      currentFileTrackSession?.setTransportTempo(bpmValue);
+    } catch (e) {
+      console.error(e);
+    }
   },
 
   startTransport: () => {
-    currentFileTrackSession?.startTransport();
+    try {
+      currentFileTrackSession?.startTransport();
+    } catch (e) {
+      console.error(e);
+    }
   },
 
   stopTransport: () => {
-    currentFileTrackSession?.stopTransport();
+    try {
+      currentFileTrackSession?.stopTransport();
+    } catch (e) {
+      console.error(e);
+    }
   },
 };
 
@@ -359,6 +383,7 @@ const openTrack = (file, fileName, fileText, fileData, setCurrentFileFnc, cache)
             'notes',
             'randomNotes',
             'dur',
+            'align',
             'subdiv',
             'shuffle',
             'arpegiate',
@@ -452,9 +477,17 @@ const loadData = (file, name, data, text, setCurrentFileFnc) => {
 };
 
 // Load embedded example file
-// console.log('DEBUG allTrackFiles=%o', allTrackFiles);
-loadData(null, allTrackFiles[0].name, allTrackFiles[0].data, allTrackFiles[0].text, setCurrentFile);
-// TODO: Add UI menu to open any of the examples.
+// debug('DEBUG allTrackFiles=%o', allTrackFiles);
+const loadName = 'final';
+allTrackFiles
+  .filter((f) => f.name === `${loadName}.js`)
+  .forEach((f, i) => {
+    if (i === 0) {
+      loadData(null, f.name, f.data, f.text, setCurrentFile);
+    }
+  });
+// TODO: (soon) Add UI menu to open any of the examples.
+// TODO: (now) Fix crash when track file cannot be loaded.
 
 const enableSidebar = true; // WIP
 const enableMenubar = true; // WIP
