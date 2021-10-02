@@ -75,7 +75,7 @@ const GearsButton = ({ clip, setShowModal, btnVariant }) => {
 };
 
 function Clip({ clip, showGears, stopClip, playClip, setShowModal }) {
-  console.log('REDRAW: Channel %s Clip %s clip.pattern=%o', clip.channelIdx, clip.idx, clip.pattern);
+  // console.log('REDRAW: Channel %s Clip %s clip.pattern=%o', clip.channelIdx, clip.idx, clip.pattern);
 
   // useEffect(() => {
   //   const clipCode = document.getElementById('clipCode');
