@@ -39,7 +39,7 @@ function requireAll(requireContext, requireContextRaw, exclude, include) {
         // `Check webpack is v4 and raw-loader configuration is present.`
       );
     }
-    return { module, text, data, name: name.split('/').slice(-1) };
+    return { module, text, data, name: name.split('/').slice(-1).join() };
   });
 }
 
