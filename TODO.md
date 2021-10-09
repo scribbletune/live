@@ -21,6 +21,7 @@ It is also a thinking-out-loud place, to capture ideas for future features.
 1. TODO Performance improvements, remove unnecessary renders and updates (e.g. fix volume sliding throws delays in, fix Clip unnecessary re-renders)
  @see <https://reactjs.org/docs/hooks-faq.html#how-to-avoid-passing-callbacks-down> revisit useCallback()
 
+1. TODO Divert channel play skip errors into a skip counter and some UI notification (perhaps in Transport component?) that is cleared with time, instead of permanent error icon (@see onChannelEvent)
 1. TODO Aligned Clips
 1. TODO Channel mute
 1. TODO Master volume + mute

@@ -282,6 +282,9 @@ const onChannelEvent = (event, params) => {
         const { e, channel } = params;
         if (e && channel) {
           console.log(e);
+          if (e.message.indexOf('The time must be greater than or equal to the last scheduled time') !== -1) {
+            console.warn('SKIP NOTE at Ch %s', channel?.idx);
+          }
           setChState(channel?.idx, 'error', e, stateCache);
         } else {
           console.log('Error: params=%o', params);
