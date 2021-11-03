@@ -12,7 +12,7 @@ It is also a thinking-out-loud place, to capture ideas for future features.
 
 1. TODO Theme changer
 1. TODO Better components framework (with useful components like number input with spinner), see promising <https://www.primefaces.org/primereact/showcase/#/inputnumber>
-1. TODO About page
+1. TODO About page - show versions of app, scribbletune, tone, react, and any other important packages. Link to Github issues.
 
 ### Baseline Features
 
@@ -22,7 +22,7 @@ It is also a thinking-out-loud place, to capture ideas for future features.
  @see <https://reactjs.org/docs/hooks-faq.html#how-to-avoid-passing-callbacks-down> revisit useCallback()
 
 1. TODO Divert channel play skip errors into a skip counter and some UI notification (perhaps in Transport component?) that is cleared with time, instead of permanent error icon (@see onChannelEvent)
-1. TODO Aligned Clips
+1. TODO Aligned Clips - Use alignment on start (current code `if (near zero) ...` prevents aligning)
 1. TODO Channel mute
 1. TODO Master volume + mute
 1. TODO Metronome

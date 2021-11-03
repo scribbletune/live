@@ -2,10 +2,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
 import React, { useState } from 'react';
-import { Container, Button, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import AppLogo from './AppLogo';
 import './Sidebar.css';
 
 function Sidebar({ onMenu, appInfo, children }) {
@@ -27,13 +28,10 @@ function Sidebar({ onMenu, appInfo, children }) {
           <Row md={12} className="mb-0">
             <Col md={12}>
               <Navbar bg="primary" variant="dark" className="toolbar">
-                <Button onClick={onSidebarClose} className="navbar-toggler-custom btn-sidebar-close">
+                {/* <Button onClick={onSidebarClose} className="navbar-toggler-custom btn-sidebar-close">
                   <span className="navbar-toggler-icon" />
-                </Button>
-                <Navbar.Brand href="#home">
-                  <img src="logo192.png" className="d-inline-block" alt="Live logo" />
-                  <span>{appInfo.name}</span>
-                </Navbar.Brand>
+                </Button> */}
+                <AppLogo appInfo={appInfo} onClick={onSidebarClose} />
                 <Navbar.Text>{appInfo.version}</Navbar.Text>
               </Navbar>
             </Col>
@@ -57,9 +55,10 @@ function Sidebar({ onMenu, appInfo, children }) {
           </ListGroup>
         </Offcanvas.Body>
       </Offcanvas>
-      <Button onClick={onSidebarOpen} className="navbar-toggler-custom btn-sidebar-open">
+      {/* <Button onClick={onSidebarOpen} className="navbar-toggler-custom btn-sidebar-open">
         <span className="navbar-toggler-icon" />
-      </Button>
+      </Button> */}
+      <AppLogo appInfo={appInfo} onClick={onSidebarOpen} />
     </>
   );
 }

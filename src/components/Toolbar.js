@@ -9,11 +9,10 @@ import Navbar from 'react-bootstrap/Navbar';
 
 import Dropzone from 'react-dropzone';
 
-import { ReactComponent as AppLogo } from '../logo/logo-live.svg';
-// import { ReactComponent as AppLogo } from '../logo/logo-only.svg';
 import './Toolbar.css';
 
 import NumberWithSpinners from './NumberWithSpinners';
+import AppLogo from './AppLogo';
 import Sidebar from './Sidebar';
 import Transport from './Transport';
 
@@ -45,7 +44,7 @@ function Toolbar({
 
   return (
     <Navbar bg="primary" variant="dark" className="toolbar">
-      {enableSidebar && (
+      {enableSidebar ? (
         <Sidebar onMenu={onSidebarMenu} appInfo={appInfo}>
           {sidebarMenu?.map((item) => (
             <Sidebar.Item key={item.id} id={item.id}>
@@ -53,12 +52,9 @@ function Toolbar({
             </Sidebar.Item>
           ))}
         </Sidebar>
+      ) : (
+        <AppLogo appInfo={appInfo} />
       )}
-
-      <Navbar.Brand href="#home">
-        <AppLogo className="d-inline-block" aria-labelledby="Logo" alt="Live logo" fill="#fff" />
-        <span>{appInfo.name}</span>
-      </Navbar.Brand>
 
       {enableMenubar && (
         <>

@@ -1,10 +1,2 @@
 /* @import '~bootstrap/scss/bootstrap.scss'; */
 
-.offcanvas .navbar-brand img {
-  /* width: 32px; */
-  height: 32px;
-  margin-left: 0.5rem;
-  margin-right: 0.75rem;
-  vertical-align: middle;
-}
-
