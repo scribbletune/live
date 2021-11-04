@@ -27,9 +27,8 @@
     "zen-observable": "^0.8.15"
   },
   "scripts": {
-    "postinstall:debug": "echo postinstall:debug && npm run postinstall:debug-tonejs",
-    "postinstall:debug-tonejs": "echo postinstall:debug-tonejs && npm link tone",
-    "postinstall:debug-scribbletune": "echo postinstall:debug-scribbletune && npm link scribbletune",
+    "postinstall:debug": "echo postinstall && npm run postinstall:debug-link -- tone scribbletune",
+    "postinstall:debug-link": "echo postinstall:debug-link && npm link --",
     "build:gitrepos": "npm install && cd node_modules/scribbletune && npm install && npm run build:browser && cd ../..",
     "build:netlify": "npm run build:gitrepos && npm run build",
     "build:netlify2": "npm run build",
