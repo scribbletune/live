@@ -23,8 +23,9 @@ It is also a thinking-out-loud place, to capture ideas for future features.
 
 1. TODO Divert channel play skip errors into a skip counter and some UI notification (perhaps in Transport component?) that is cleared with time, instead of permanent error icon (@see onChannelEvent)
 1. TODO Aligned Clips - Use alignment on start (current code `if (near zero) ...` prevents aligning)
-1. TODO Channel mute
-1. TODO Master volume + mute
+1. TODO Channel mute (helpful for "Play Row" button)
+1. TODO Midi mirror output option (for all or select channels, e.g. to mirror playback to a rack)
+1. TODO Master volume + mute (useful when e.g. Midi output is used)
 1. TODO Metronome
 1. TODO Clip names
 1. TODO Clip colors
