@@ -17,7 +17,7 @@
     "react-icons": "^4.2.0",
     "react-scripts": "^4.0.3",
     "react-spring": "^8.0.0",
-    "scribbletune": "git://github.com/scribbletune/scribbletune.git#v5",
+    "scribbletune": "^5.0.0-alpha.2",
     "soundfont-player": "^0.12.0",
     "toasted-notes": "^3.2.0",
     "tone": "^14.7.77",
