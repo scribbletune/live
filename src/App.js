@@ -32,6 +32,8 @@ import {
 } from './gql';
 import introspectionResult from './schema-introspection.json';
 
+import About from './components/About';
+
 import Channel from './components/Channel';
 import Master from './components/Master';
 import ClipEditor from './components/ClipEditor';
@@ -509,13 +511,6 @@ function useScribbletuneIsPlaying(store) {
   return data.isPlaying;
 }
 
-const sidebarMenu = [
-  { id: 1, title: 'Uno' },
-  { id: 2, title: 'Dos' },
-  { id: 3, title: 'Tres' },
-  { id: 4, title: 'About' },
-];
-
 function App() {
   // console.log('REDRAW: App');
   const [setVolume] = useMutation(SET_VOLUME, { client });
@@ -528,11 +523,25 @@ function App() {
   // Some local state variables (not using context or Apollo)
   const [currentFileIsDirty, setCurrentFileIsDirty] = useState(currentFileState.isDirty);
   const [showGears, setShowGears] = useState(false);
+  const [showAboutModal, setShowAboutModal] = useState({ show: false });
   const [showClipEditorModal, setShowClipEditorModal] = useState({ show: false, clip: {} });
   const [logNotes, setLogNotes] = useState(globalLogNotes);
 
   // Experiment: Control scribbletune here instead of in resolvers.js
   useScribbletuneIsPlaying(client);
+
+  const sidebarMenu = [
+    { id: 1, title: 'Uno' },
+    { id: 2, title: 'Dos' },
+    { id: 3, title: 'Tres' },
+    {
+      id: 4,
+      title: 'About',
+      action: () => {
+        setShowAboutModal({ show: true });
+      },
+    },
+  ];
 
   const handleLogNotesChangeEvent = () => {
     setLogNotes(!logNotes);
@@ -542,8 +551,13 @@ function App() {
     setTransportTempo({ variables: { tempoBpm: +value } });
   };
 
-  const onSidebarMenu = (id) => {
+  const onSidebarMenu = (id: string) => {
     console.log('DEBUG: Sidebar.Item [CLICK] id=%o', id);
+    sidebarMenu
+      .filter((i) => i.id.toString() === id)
+      .forEach((i) => {
+        i?.action();
+      });
   };
 
   const onMenubarMenu = (id) => {
@@ -608,6 +622,20 @@ function App() {
     }
     setCurrentFileIsDirty(false); // currentFileIsDirty = false;
   };
+
+  const onHideAboutModal = () => {
+    setShowAboutModal({ show: false });
+  };
+  const AboutModal = () => (
+    <Modal show={showAboutModal.show} onHide={onHideAboutModal}>
+      <Modal.Header closeButton>
+        <Modal.Title>About</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <About />
+      </Modal.Body>
+    </Modal>
+  );
 
   const onHideClipEditorModal = () => {
     setShowClipEditorModal({ show: false, clip: {} });
@@ -686,6 +714,7 @@ function App() {
                 <Master count={channelsCnt && clipsCnt} playRow={playRow} />
               </Row>
 
+              <AboutModal />
               <ClipEditorModal />
               <ToastContainer hideProgressBar="true" />
               <ReactTooltip />
