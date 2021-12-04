@@ -13,7 +13,7 @@ import ReactTooltip from 'react-tooltip'; // Displays tooltips for "data-tip" pr
 
 import * as Tone from 'tone';
 // import { Session, arp, scale } from 'scribbletune/browser'; // Webpack has difficulty loading from git repo
-import browser from 'scribbletune/browser';
+import * as browser from 'scribbletune/browser';
 
 // import { ExecutionResult } from 'graphql';
 import Observable from 'zen-observable';
