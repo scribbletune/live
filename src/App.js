@@ -528,7 +528,7 @@ function App() {
   // Some local state variables (not using context or Apollo)
   const [currentFileIsDirty, setCurrentFileIsDirty] = useState(currentFileState.isDirty);
   const [showGears, setShowGears] = useState(false);
-  const [showModal, setShowClipEditorModal] = useState({ show: false, clip: {} });
+  const [showClipEditorModal, setShowClipEditorModal] = useState({ show: false, clip: {} });
   const [logNotes, setLogNotes] = useState(globalLogNotes);
 
   // Experiment: Control scribbletune here instead of in resolvers.js
@@ -613,14 +613,15 @@ function App() {
     setShowClipEditorModal({ show: false, clip: {} });
   };
   const ClipEditorModal = () => (
-    <Modal show={showModal.show} onHide={onHideClipEditorModal}>
+    <Modal show={showClipEditorModal.show} onHide={onHideClipEditorModal}>
       <Modal.Header closeButton>
         <Modal.Title>
-          Edit Clip {showModal.clip?.idx} Channel {showModal.clip?.channelIdx} {showModal.clip?.channelName}
+          Edit Clip {showClipEditorModal.clip?.idx} Channel {showClipEditorModal.clip?.channelIdx}{' '}
+          {showClipEditorModal.clip?.channelName}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <ClipEditor clip={showModal.clip} />
+        <ClipEditor clip={showClipEditorModal.clip} />
         {/* <textarea
             id="clipCode"
             onChange={e => setClipStr(e.target.value)}
