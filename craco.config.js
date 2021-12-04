@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 // const { when, whenDev, whenProd, whenTest, ESLINT_MODES, POSTCSS_MODES } = require("@craco/craco");
 
 module.exports = {
@@ -5,6 +6,16 @@ module.exports = {
     // eslint-disable-next-line no-unused-vars
     configure: (webpackConfig, { env, paths }) => {
       // Overrides
+
+      // Fix error in ./node_modules/jazz-midi/index.js "Critical dependency: the request of a dependency is an expression"
+      // @see https://github.com/jazz-soft/jazz-midi/issues/6
+      webpackConfig.plugins.push(
+        new webpack.ContextReplacementPlugin(/jazz-midi/, (data) => {
+          delete data.dependencies[0].critical;
+          return data;
+        })
+      );
+
       webpackConfig.module.rules.splice(
         1,
         0,
@@ -50,7 +61,13 @@ module.exports = {
         }
       );
 
-      console.log('DEBUG: env=%o paths=%o craco.config.js: webpackConfig=%o', env, paths, webpackConfig);
+      // console.log('DEBUG: env=%o paths=%o craco.config.js: webpackConfig=%o', env, paths, webpackConfig);
+      console.log(
+        'DEBUG: env=%o paths=%o craco.config.js: webpackConfig.plugins=%o',
+        env,
+        paths,
+        webpackConfig.plugins
+      );
       return webpackConfig;
     },
   },
