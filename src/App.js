@@ -528,7 +528,7 @@ function App() {
   // Some local state variables (not using context or Apollo)
   const [currentFileIsDirty, setCurrentFileIsDirty] = useState(currentFileState.isDirty);
   const [showGears, setShowGears] = useState(false);
-  const [showModal, setShowModal] = useState({ show: false, clip: {} });
+  const [showModal, setShowClipEditorModal] = useState({ show: false, clip: {} });
   const [logNotes, setLogNotes] = useState(globalLogNotes);
 
   // Experiment: Control scribbletune here instead of in resolvers.js
@@ -609,11 +609,11 @@ function App() {
     setCurrentFileIsDirty(false); // currentFileIsDirty = false;
   };
 
-  const onHideModal = () => {
-    setShowModal({ show: false, clip: {} });
+  const onHideClipEditorModal = () => {
+    setShowClipEditorModal({ show: false, clip: {} });
   };
   const ClipEditorModal = () => (
-    <Modal show={showModal.show} onHide={onHideModal}>
+    <Modal show={showModal.show} onHide={onHideClipEditorModal}>
       <Modal.Header closeButton>
         <Modal.Title>
           Edit Clip {showModal.clip?.idx} Channel {showModal.clip?.channelIdx} {showModal.clip?.channelName}
@@ -676,7 +676,7 @@ function App() {
                       channel={channel}
                       key={channel.idx}
                       showGears={showGears}
-                      setShowModal={setShowModal}
+                      setShowModal={setShowClipEditorModal}
                       setVolume={setVolume}
                       stopClip={stopClip}
                       playClip={playClip}
