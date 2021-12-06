@@ -85,11 +85,13 @@ input[type='range'][orient='vertical'] {
 
 /* Style toaster like Darkly theme from <https://bootswatch.com/darkly/> */
 
+/* stylelint-disable-next-line selector-class-pattern */
 .Toastify .Toastify__toast-container {
   /* Show toasts under NavBar */
   padding-top: 75px;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 .Toastify .Toastify__toast-icon {
   /* Move the icon to the top */
   margin-bottom: auto;

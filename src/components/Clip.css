@@ -8,6 +8,7 @@ div.slide-right-drawer {
 div.slide-right-drawer button {
   float: right;
 }
+
 div.slide-right-drawer.btn button {
   border: unset;
 }
