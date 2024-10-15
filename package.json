@@ -63,7 +63,7 @@
     "@graphql-codegen/introspection": "2.1.0",
     "@playlyfe/gql": "^2.6.2",
     "@storybook/addon-actions": "^6.3.7",
-    "@storybook/addon-essentials": "^8.1.8",
+    "@storybook/addon-essentials": "^8.3.5",
     "@storybook/addon-links": "^6.3.7",
     "@storybook/node-logger": "^6.3.7",
     "@storybook/preset-create-react-app": "^3.2.0",
